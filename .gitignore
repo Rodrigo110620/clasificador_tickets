@@ -5,3 +5,7 @@ __pycache__/
 .idea/
 *.pkl
 .DS_Store
+
+models/*
+!models/.gitkeep
+
