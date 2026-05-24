@@ -100,6 +100,22 @@ html, body {
     font-weight: 700 !important;
     border-bottom: 1px solid #9ae6b4;
 }
+.badge-en-uso {
+    display: inline-block;
+    background: #276749;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.12rem 0.45rem;
+    border-radius: 6px;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+}
+.tabla-comparacion-hint {
+    font-size: 0.82rem;
+    color: #718096;
+    font-weight: 400;
+}
 .tabla-comparacion-msg {
     color: #276749 !important;
     font-size: 0.9rem;
@@ -357,6 +373,176 @@ div[data-testid="stTextArea"] {
     padding: 1.25rem 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     margin-bottom: 1rem;
+}
+
+.sidebar-modelo-activo {
+    background: linear-gradient(135deg, rgba(49, 130, 206, 0.35) 0%, rgba(44, 82, 130, 0.55) 100%);
+    border: 1px solid #63b3ed;
+    border-left: 4px solid #48bb78;
+    border-radius: 10px;
+    padding: 0.75rem 0.85rem;
+    margin: 0.75rem 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #f7fafc !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.sidebar-modelo-activo strong {
+    color: #bee3f8 !important;
+    font-weight: 600;
+}
+.sidebar-modelo-activo .modelo-nombre {
+    display: block;
+    margin-top: 0.35rem;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.ejemplos-label {
+    font-size: 0.85rem;
+    color: #718096;
+    margin: 0.5rem 0 0.35rem;
+}
+
+.clasif-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.25rem 0 1rem;
+}
+
+.result-hero {
+    background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+    border: 2px solid #48bb78;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 14px rgba(72, 187, 120, 0.15);
+}
+.result-hero-warn {
+    background: linear-gradient(135deg, #fffaf0 0%, #fefcbf 100%);
+    border-color: #ed8936;
+    box-shadow: 0 4px 14px rgba(237, 137, 54, 0.12);
+}
+.result-hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+.result-hero-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #4a5568;
+    font-weight: 600;
+}
+.result-hero-conf {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #276749;
+}
+.result-hero-warn .result-hero-conf {
+    color: #c05621;
+}
+.result-hero-cat {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #22543d;
+    margin: 0.25rem 0 0.75rem;
+    line-height: 1.2;
+}
+.result-hero-warn .result-hero-cat {
+    color: #744210;
+}
+.conf-bar-hero {
+    height: 10px;
+    margin-bottom: 0.85rem;
+}
+
+.prob-panel {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+}
+.prob-panel-title {
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+.prob-sum-hint {
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: #718096;
+    margin-left: 0.35rem;
+}
+.prob-list {
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.prob-row {
+    display: grid;
+    grid-template-columns: minmax(120px, 1.4fr) 3fr 42px;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.45rem;
+    font-size: 0.88rem;
+}
+.prob-row-top {
+    background: #f0fff4;
+    border-radius: 8px;
+    padding: 0.35rem 0.45rem;
+    margin-left: -0.45rem;
+    margin-right: -0.45rem;
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
+}
+.prob-row-top .prob-label {
+    font-weight: 700;
+    color: #276749;
+}
+.prob-label {
+    color: #4a5568;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.prob-track {
+    background: #edf2f7;
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+}
+.prob-fill {
+    background: linear-gradient(90deg, #4299e1, #3182ce);
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+.prob-row-top .prob-fill {
+    background: linear-gradient(90deg, #48bb78, #38a169);
+}
+.prob-pct {
+    font-weight: 700;
+    text-align: right;
+    color: #2d3748;
+    font-size: 0.85rem;
+}
+
+.alert-desconocido {
+    background: #fffaf0;
+    border: 1px solid #f6ad55;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1rem;
+    color: #744210;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .result-card {

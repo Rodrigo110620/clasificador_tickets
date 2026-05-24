@@ -1,6 +1,7 @@
 import streamlit as st
 
-from config.constants import MENU_OPCIONES
+from config.constants import MIN_EJEMPLOS_POR_CATEGORIA, MENU_OPCIONES
+from services.training import ejecutar_reentrenamiento
 
 
 def _labels_nav():
@@ -9,6 +10,37 @@ def _labels_nav():
 
 def _keys_nav():
     return [key for key, _ in MENU_OPCIONES]
+
+
+def _boton_reentrenar():
+    """Siempre visible en la barra lateral."""
+    st.markdown("---")
+    if st.button(
+        "🔄 Reentrenar modelo",
+        type="primary",
+        use_container_width=True,
+        help="Entrena de nuevo con todos los tickets de dataset/tickets.csv",
+    ):
+        with st.spinner("Entrenando…"):
+            resultado = ejecutar_reentrenamiento()
+        if resultado.get("ok"):
+            st.success(resultado["mensaje"])
+            omitidas = resultado.get("categorias_omitidas") or []
+            if omitidas:
+                st.warning(
+                    f"Omitidas (< {MIN_EJEMPLOS_POR_CATEGORIA} ej.): {', '.join(omitidas)}"
+                )
+            st.rerun()
+        else:
+            st.error(resultado.get("mensaje", "No se pudo entrenar"))
+
+
+def _panel_admin():
+    st.checkbox(
+        "Modo administrador",
+        key="es_admin",
+        help="Permite corregir categorías manualmente tras clasificar",
+    )
 
 
 def render_sidebar():
@@ -36,23 +68,37 @@ def render_sidebar():
         )
         st.session_state.pagina = keys[labels.index(seleccion)]
 
+        _boton_reentrenar()
+        _panel_admin()
+
+        try:
+            from services.model_loader import obtener_modelo
+            datos = obtener_modelo()
+            if datos and datos.get("nombre"):
+                nombre = datos["nombre"]
+                st.markdown(
+                    f'<div class="sidebar-modelo-activo">'
+                    f'🤖 <strong>Modelo en uso</strong>'
+                    f'<span class="modelo-nombre">{nombre}</span>'
+                    f'</div>',
+                    unsafe_allow_html=True,
+                )
+        except Exception:
+            pass
+
         st.markdown(
             """
             <div class="sidebar-block">
                 <strong>Acerca del Proyecto</strong><br><br>
-                Sistema de clasificación automática de tickets de soporte técnico
-                mediante modelos de aprendizaje supervisado y procesamiento de lenguaje natural.
+                Clasificación automática de tickets de soporte técnico
+                mediante Machine Learning y NLP.
             </div>
             <div class="sidebar-block">
-                <strong>Tecnologías Utilizadas</strong>
+                <strong>Tecnologías</strong>
                 <ul class="sidebar-tech">
-                    <li>Python</li>
-                    <li>Scikit-learn</li>
-                    <li>TF-IDF</li>
-                    <li>NLP (NLTK, spaCy)</li>
+                    <li>Python · Scikit-learn</li>
+                    <li>TF-IDF · NLTK</li>
                     <li>Streamlit</li>
-                    <li>Pandas, NumPy</li>
-                    <li>Matplotlib, Seaborn</li>
                 </ul>
             </div>
             """,

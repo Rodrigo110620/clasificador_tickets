@@ -75,7 +75,7 @@ def evaluar_en_dataset(_version: str = "v2"):
 
     metricas_archivo = _leer_metricas_archivo()
     comparacion = (metricas_archivo or {}).get("comparacion")
-    mejor = (metricas_archivo or {}).get("mejor", nombre)
+    modelo_activo = (metricas_archivo or {}).get("modelo_activo") or nombre
 
     if not comparacion:
         comparacion = [{
@@ -84,12 +84,14 @@ def evaluar_en_dataset(_version: str = "v2"):
             "precision": precision_score(y_test, y_pred, average="weighted", zero_division=0),
             "recall": recall_score(y_test, y_pred, average="weighted", zero_division=0),
             "f1_score": f1_score(y_test, y_pred, average="weighted", zero_division=0),
+            "en_uso": True,
         }]
-        mejor = nombre
+        modelo_activo = nombre
 
     return {
         "comparacion": comparacion,
-        "mejor": mejor,
+        "mejor": modelo_activo,
+        "modelo_activo": modelo_activo,
         "mejor_metricas": {
             "accuracy": accuracy_score(y_test, y_pred),
             "precision": precision_score(y_test, y_pred, average="weighted", zero_division=0),

@@ -2,7 +2,7 @@ import os
 
 import streamlit as st
 
-from config.constants import ICONOS, RUTA_MEMORIA
+from config.constants import RUTA_MEMORIA, icono_categoria
 from services.historial import deduplicar_historial
 from ui.components import page_header, render_footer, section_title
 
@@ -30,10 +30,13 @@ def pagina_historial(metricas, datos_modelo):
             unsafe_allow_html=True,
         )
 
-        etiquetas = [
-            f"{ICONOS.get(h['categoria'], '📂')} {h['categoria']} — {h['confianza']:.0f}% — {h.get('ticket_corto', '')}"
-            for h in historial
-        ]
+        etiquetas = []
+        for h in historial:
+            extra = " ⚠️" if h.get("desconocido") else ""
+            etiquetas.append(
+                f"{icono_categoria(h['categoria'])} {h['categoria']}{extra} — "
+                f"{h['confianza']:.0f}% — {h.get('ticket_corto', '')}"
+            )
         indice = st.selectbox(
             "Selecciona un ticket del historial",
             range(len(historial)),
@@ -41,7 +44,7 @@ def pagina_historial(metricas, datos_modelo):
             label_visibility="collapsed",
         )
         item = historial[indice]
-        icono = ICONOS.get(item["categoria"], "📂")
+        icono = icono_categoria(item["categoria"])
         st.markdown(
             f"""
             <div class="hist-item">

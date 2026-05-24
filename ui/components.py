@@ -3,8 +3,9 @@ from datetime import datetime
 
 import streamlit as st
 
-from config.constants import ICONOS, PRIORIDAD
-from services.classifier import procesar_clasificacion
+from config.constants import PRIORIDAD, icono_categoria
+from services.classifier import guardar_para_entrenamiento, procesar_clasificacion
+from services.dataset import contar_por_categoria, ejemplos_por_categoria
 from services.metrics import evaluar_en_dataset
 from ui.charts import grafico_probabilidades_html, render_matriz_confusion_html
 
@@ -28,40 +29,119 @@ def section_title(num: int, texto: str):
     )
 
 
-def render_resultado(resultado: dict, nombre_modelo: str):
-    cat = resultado["categoria"]
-    conf = resultado["confianza"]
-    icono = ICONOS.get(cat, "📂")
-    prioridad, badge_cls = PRIORIDAD.get(cat, ("Media", "badge-media"))
-    bar_width = min(int(conf), 100)
+def nombre_modelo_activo(metricas: dict | None, datos_modelo: dict | None) -> str:
+    if datos_modelo and datos_modelo.get("nombre"):
+        return datos_modelo["nombre"]
+    if metricas:
+        return metricas.get("modelo_activo") or metricas.get("mejor", "—")
+    return "—"
 
+
+def _contenido_analisis(resultado: dict):
+    claves = resultado.get("palabras_clave") or []
+    if claves:
+        st.markdown(f"**Palabras clave:** {', '.join(claves)}")
+    else:
+        st.markdown("**Palabras clave:** No se encontraron términos útiles.")
+    st.markdown(f"**Texto limpio (stemming):** `{resultado.get('texto_procesado', '')}`")
+    tokens = resultado.get("tokens_utiles") or []
+    st.markdown(f"**Tokens útiles:** {', '.join(tokens) if tokens else '—'}")
+    stems = resultado.get("stems") or []
+    st.markdown(f"**Stems aplicados:** {', '.join(stems) if stems else '—'}")
+    elim = resultado.get("palabras_eliminadas") or []
+    if elim:
+        muestra = ", ".join(elim[:12])
+        if len(elim) > 12:
+            muestra += f" … (+{len(elim) - 12})"
+        st.caption(f"Stopwords / ruido eliminado: {muestra}")
+
+
+def render_resultado(resultado: dict, nombre_modelo: str):
+    cat = resultado.get("categoria_modelo", resultado["categoria"])
+    conf = resultado["confianza"]
+    icono = icono_categoria(cat)
+    prioridad, badge_cls = PRIORIDAD.get(cat, PRIORIDAD.get("Otros", ("Media", "badge-media")))
+    bar_width = min(max(int(conf), 8), 100)
+    desconocido = resultado.get("desconocido", False)
+    umbral = resultado.get("umbral_pct", 20)
+
+    estado_cls = "result-hero" if not desconocido else "result-hero result-hero-warn"
     st.markdown(
         f"""
-        <div class="result-card">
-            <div class="result-header">
-                <div>
-                    <div style="font-size:0.85rem;color:#4a5568;">✓ Resultado de la clasificación</div>
-                    <div class="result-cat">{icono} Categoría detectada: {cat}</div>
-                </div>
-                <div>
-                    <div class="result-conf-label">Confianza del modelo</div>
-                    <div class="result-conf-value">{conf:.0f}%</div>
-                    <div class="conf-bar-wrap">
-                        <div class="conf-bar-fill" style="width:{bar_width}%;"></div>
-                    </div>
-                </div>
+        <div class="{estado_cls}">
+            <div class="result-hero-top">
+                <span class="result-hero-label">Categoría detectada</span>
+                <span class="result-hero-conf">{conf:.0f}% confianza</span>
             </div>
-            <div class="result-body">
-                <div class="badges-row">
-                    <span class="badge {badge_cls}">Prioridad sugerida: {prioridad}</span>
-                    <span class="badge badge-modelo">Modelo utilizado: {nombre_modelo}</span>
-                </div>
+            <div class="result-hero-cat">{icono} {html.escape(cat)}</div>
+            <div class="conf-bar-wrap conf-bar-hero">
+                <div class="conf-bar-fill" style="width:{bar_width}%;"></div>
+            </div>
+            <div class="badges-row">
+                <span class="badge {badge_cls}">Prioridad: {prioridad[0]}</span>
+                <span class="badge badge-modelo">🤖 {html.escape(nombre_modelo)}</span>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+    if desconocido:
+        st.markdown(
+            f"""
+            <div class="alert-desconocido">
+                ⚠️ {html.escape(resultado.get('mensaje_desconocido', ''))}
+                (umbral dinámico ~{umbral:.0f}%, margen sobre 2.ª opción: {resultado.get('margen_segunda_pct', 0):.0f}%)
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
     grafico_probabilidades_html(resultado["probabilidades"], cat)
+
+    with st.expander("🔎 Análisis del ticket", expanded=False):
+        _contenido_analisis(resultado)
+
+    render_admin_etiquetado(resultado)
+
+
+def render_admin_etiquetado(resultado: dict):
+    if not st.session_state.get("es_admin"):
+        return
+
+    st.markdown("---")
+    st.markdown("**🛠 Revisión manual (administrador)**")
+
+    cats_dataset = sorted(contar_por_categoria().keys())
+    sugeridas = sorted(resultado.get("probabilidades", {}).keys(), reverse=False)
+    opciones = sorted(set(cats_dataset) | set(sugeridas))
+    if resultado.get("categoria_modelo") and resultado["categoria_modelo"] not in opciones:
+        opciones.append(resultado["categoria_modelo"])
+
+    default_idx = 0
+    if resultado.get("categoria_modelo") in opciones:
+        default_idx = opciones.index(resultado["categoria_modelo"])
+
+    categoria_correcta = st.selectbox(
+        "Asignar categoría correcta",
+        opciones,
+        index=default_idx,
+        key=f"admin_cat_{resultado.get('hash_md5', 'x')}",
+    )
+    nueva_categoria = st.text_input(
+        "O crear categoría nueva",
+        placeholder="Ej: Telefonía, VPN, Excel…",
+        key=f"admin_new_{resultado.get('hash_md5', 'x')}",
+    )
+    cat_final = nueva_categoria.strip() if nueva_categoria.strip() else categoria_correcta
+
+    if st.button("💾 Etiquetar y agregar al entrenamiento", type="primary"):
+        guardar_para_entrenamiento(resultado["ticket"], cat_final)
+        st.success(f"Ticket guardado como **{cat_final}**. Usa «Reentrenar modelo» para incorporarlo.")
+        st.info(
+            f"La categoría necesita al menos 20 ejemplos en el CSV para incluirse en el próximo entrenamiento. "
+            f"Actualmente: {contar_por_categoria().get(cat_final, 0)}"
+        )
 
 
 def render_metricas_cards(metricas: dict):
@@ -85,20 +165,23 @@ def render_metricas_cards(metricas: dict):
         )
 
 
-def render_comparacion_tabla(metricas: dict, mejor_nombre: str):
+def render_comparacion_tabla(metricas: dict, datos_modelo: dict | None = None):
     filas = metricas.get("comparacion", [])
     if not filas:
-        st.info("Entrena el modelo con `python train_model.py` para ver la comparación.")
+        st.info("Entrena el modelo con `python train_model.py` o el botón de reentrenar.")
         return
 
-    mejor = metricas.get("mejor", mejor_nombre)
+    modelo_activo = nombre_modelo_activo(metricas, datos_modelo)
     filas_html = []
     for fila in filas:
-        es_mejor = fila["modelo"] == mejor
-        tr_class = "fila-mejor" if es_mejor else ""
+        en_uso = fila.get("en_uso") or fila["modelo"] == modelo_activo
+        tr_class = "fila-mejor" if en_uso else ""
+        nombre_celda = html.escape(fila["modelo"])
+        if en_uso:
+            nombre_celda += ' <span class="badge-en-uso">★ En uso</span>'
         filas_html.append(
             f"<tr class='{tr_class}'>"
-            f"<td>{html.escape(fila['modelo'])}</td>"
+            f"<td>{nombre_celda}</td>"
             f"<td>{fila['accuracy'] * 100:.1f}%</td>"
             f"<td>{fila['precision'] * 100:.1f}%</td>"
             f"<td>{fila['recall'] * 100:.1f}%</td>"
@@ -125,8 +208,8 @@ def render_comparacion_tabla(metricas: dict, mejor_nombre: str):
             </table>
         </div>
         <p class="tabla-comparacion-msg">
-            ✔ Mejor modelo seleccionado: <strong>{html.escape(mejor)}</strong>
-            (fila resaltada en verde)
+            ★ <strong>Modelo en uso para clasificar:</strong> {html.escape(modelo_activo)}
+            <br><span class="tabla-comparacion-hint">Se elige por mayor F1-score en prueba y se calibra (sigmoid).</span>
         </p>
         """,
         unsafe_allow_html=True,
@@ -146,7 +229,7 @@ def render_matriz_confusion(metricas: dict, nombre_modelo: str, datos_modelo=Non
     if matriz and etiquetas:
         render_matriz_confusion_html(matriz, etiquetas, nombre_modelo)
     else:
-        st.warning("Ejecuta `python train_model.py` para generar la matriz de confusión.")
+        st.warning("Ejecuta el entrenamiento para generar la matriz de confusión.")
 
 
 def render_footer(metricas: dict | None):
@@ -154,13 +237,43 @@ def render_footer(metricas: dict | None):
     st.markdown(
         f"""
         <div class="footer-bar">
-            <span>ℹ️ Este sistema utiliza Procesamiento de Lenguaje Natural (NLP) y Machine Learning
-            para clasificar tickets de soporte técnico de forma automática.</span>
+            <span>ℹ️ NLP + Machine Learning para clasificación automática de tickets.</span>
             <span class="footer-ts">📅 Última actualización del modelo: {fecha}</span>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+
+def _aplicar_ejemplo(texto: str):
+    st.session_state.ticket_input = texto
+    st.session_state.clasificar_ejemplo = texto
+
+
+def render_ejemplos_por_categoria():
+    ejemplos = ejemplos_por_categoria()
+    if not ejemplos:
+        return
+
+    st.markdown(
+        '<p class="ejemplos-label">Ejemplos rápidos por categoría:</p>',
+        unsafe_allow_html=True,
+    )
+    categorias = sorted(ejemplos.keys())
+    n_cols = 4
+    for i in range(0, len(categorias), n_cols):
+        fila = categorias[i : i + n_cols]
+        cols = st.columns(len(fila))
+        for col, cat in zip(cols, fila):
+            etiqueta = f"{icono_categoria(cat)} {cat}"
+            with col:
+                st.button(
+                    etiqueta,
+                    key=f"ejemplo_{cat}",
+                    use_container_width=True,
+                    on_click=_aplicar_ejemplo,
+                    args=(ejemplos[cat],),
+                )
 
 
 def seccion_input(
@@ -180,11 +293,14 @@ def seccion_input(
         height=130,
         label_visibility="collapsed",
         key="ticket_input",
+        placeholder="Describe el problema o solicitud del usuario…",
     )
     st.markdown(
         f'<p class="char-counter">Caracteres: {len(ticket)}</p>',
         unsafe_allow_html=True,
     )
+
+    render_ejemplos_por_categoria()
 
     clasificar = False
     if mostrar_boton:
@@ -200,21 +316,10 @@ def seccion_resultado(
     if mostrar_titulo:
         section_title(num_seccion, "Resultado de la clasificación")
     resultado = st.session_state.ultimo_resultado
-    nombre = datos_modelo.get("nombre", "Modelo") if datos_modelo else "—"
+    nombre = nombre_modelo_activo(None, datos_modelo)
 
     if resultado and datos_modelo:
         render_resultado(resultado, nombre)
-        with st.expander("🔬 Ver texto preprocesado (NLP)"):
-            texto_nlp = resultado.get("texto_procesado") or "(sin términos significativos)"
-            st.markdown(
-                f"""
-                <div class="nlp-texto-box">
-                    <span class="nlp-label">Texto después del pipeline (limpieza, stopwords, lematización):</span>
-                    <pre>{html.escape(texto_nlp)}</pre>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
     else:
         st.markdown(
             '<div class="placeholder-result"><p>Pulse «Clasificar Ticket» para ver el resultado</p></div>',
@@ -222,18 +327,14 @@ def seccion_resultado(
         )
 
 
-def _nombre_modelo_eval(metricas: dict, datos_modelo: dict) -> str:
-    return metricas.get("mejor", datos_modelo.get("nombre", "")) if metricas else ""
-
-
 def vista_metricas_kpi(metricas: dict, datos_modelo: dict, num_seccion: int = 1):
     if not metricas:
-        st.warning("Entrena el modelo: `python train_model.py`")
+        st.warning("Entrena el modelo: `python train_model.py` o reentrena desde el panel lateral.")
         return
-    nombre = _nombre_modelo_eval(metricas, datos_modelo)
-    section_title(num_seccion, "Métricas del mejor modelo")
+    nombre = nombre_modelo_activo(metricas, datos_modelo)
+    section_title(num_seccion, "Métricas del modelo en uso")
     st.markdown(
-        f'<p class="modelo-subtitle">Modelo evaluado: <strong>{nombre}</strong></p>',
+        f'<p class="modelo-subtitle">Clasificación con: <strong>{html.escape(nombre)}</strong></p>',
         unsafe_allow_html=True,
     )
     render_metricas_cards(metricas)
@@ -242,29 +343,39 @@ def vista_metricas_kpi(metricas: dict, datos_modelo: dict, num_seccion: int = 1)
 def vista_matriz_confusion(metricas: dict, datos_modelo: dict, num_seccion: int = 1):
     if not metricas:
         return
-    nombre = _nombre_modelo_eval(metricas, datos_modelo)
+    nombre = nombre_modelo_activo(metricas, datos_modelo)
     section_title(num_seccion, "Matriz de confusión")
     render_matriz_confusion(metricas, nombre, datos_modelo)
 
 
 def vista_comparacion_modelos(metricas: dict, datos_modelo: dict, num_seccion: int = 1):
     if not metricas:
-        st.warning("Entrena el modelo: `python train_model.py`")
+        st.warning("Entrena el modelo para ver la comparación.")
         return
     section_title(num_seccion, "Comparación de modelos")
-    render_comparacion_tabla(metricas, datos_modelo.get("nombre", ""))
+    render_comparacion_tabla(metricas, datos_modelo)
 
 
 def vista_clasificador(datos_modelo: dict, num_input: int = 1, num_resultado: int = 2):
-    """Solo entrada + resultado (sin métricas)."""
-    col_izq, col_der = st.columns([1, 1], gap="large")
-    with col_izq:
-        ticket, clasificar = seccion_input(
-            mostrar_titulo=True,
-            num_seccion=num_input,
+    ticket, clasificar = seccion_input(mostrar_titulo=True, num_seccion=num_input)
+
+    ejemplo = st.session_state.pop("clasificar_ejemplo", None)
+    if ejemplo:
+        procesar_clasificacion(ejemplo, datos_modelo)
+    elif clasificar:
+        procesar_clasificacion(ticket, datos_modelo)
+
+    st.markdown('<div class="clasif-divider"></div>', unsafe_allow_html=True)
+    section_title(num_resultado, "Resultado de la clasificación")
+
+    if st.session_state.get("ultimo_resultado") and datos_modelo:
+        render_resultado(
+            st.session_state.ultimo_resultado,
+            nombre_modelo_activo(None, datos_modelo),
         )
-        if clasificar:
-            procesar_clasificacion(ticket, datos_modelo)
-    with col_der:
-        seccion_resultado(datos_modelo, mostrar_titulo=True, num_seccion=num_resultado)
+    else:
+        st.markdown(
+            '<div class="placeholder-result"><p>Pulse «Clasificar Ticket» para ver el resultado</p></div>',
+            unsafe_allow_html=True,
+        )
     return ticket

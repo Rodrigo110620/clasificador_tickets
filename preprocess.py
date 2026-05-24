@@ -33,6 +33,32 @@ MIN_PALABRAS_UTILES = 3
 MAX_LONGITUD_PALABRA = 15
 MIN_LONGITUD_TEXTO = 20
 
+# Vocabulario stemizado típico de tickets de soporte técnico
+_STEMS_SOPORTE_IT = {
+    "error", "fall", "sistem", "aplic", "program", "softwar", "servidor", "servici",
+    "red", "wifi", "vpn", "correo", "outlook", "mail", "base", "dat", "sql",
+    "consult", "usuari", "contraseñ", "contrasen", "acces", "sesion", "login",
+    "impresor", "excel", "archiv", "window", "linux", "actualiz", "instal",
+    "conex", "internet", "naveg", "pantall", "equip", "comput", "laptop",
+    "monitor", "teclad", "raton", "backup", "respal", "licenci", "domini",
+    "firewall", "dhcp", "dns", "router", "switch", "telefoni", "llam",
+    "extension", "ora", "mongodb", "postgresql", "mysql", "tabl", "registr",
+    "report", "modul", "factur", "nomina", "crm", "erp", "intranet", "portal",
+    "autent", "token", "bloque", "caid", "lent", "lentitud", "memor", "disco",
+    "antivirus", "ticket", "soport", "tecnic", "configur", "permis", "rol",
+    "servidor", "host", "puert", "protocol", "ssl", "certific", "copi",
+    "escan", "toner", "papel", "driver", "control", "version", "patch",
+}
+
+# Temas claramente ajenos a mesa de ayuda IT
+_STEMS_FUERA_TEMA = {
+    "histor", "bolivia", "peru", "argentin", "chile", "mexic", "geograf",
+    "politic", "president", "guerr", "futbol", "deport", "recet", "cocin",
+    "pelicul", "cine", "musical", "amor", "matrimon", "boda", "turism",
+    "vacacion", "hotel", "literatur", "poem", "novel", "filosof", "religion",
+    "univers", "matemat", "fisic", "quimic", "biolog", "animal", "plant",
+}
+
 
 # ── Helpers ───────────────────────────────────────────────────
 
@@ -107,6 +133,39 @@ def _validar(stems: list) -> tuple:
     return True, ""
 
 
+def _stem_en_lexico(stem: str, lexico: set) -> bool:
+    if stem in lexico:
+        return True
+    return any(
+        stem.startswith(raiz) or raiz.startswith(stem)
+        for raiz in lexico
+        if len(stem) >= 4 and len(raiz) >= 4
+    )
+
+
+def es_contexto_soporte_tecnico(stems: list) -> tuple[bool, str]:
+    """Rechaza textos que no describen un problema de soporte técnico."""
+    if not stems:
+        return False, "El texto no contiene términos de soporte técnico."
+
+    soporte = sum(1 for s in stems if _stem_en_lexico(s, _STEMS_SOPORTE_IT))
+    fuera = sum(1 for s in stems if _stem_en_lexico(s, _STEMS_FUERA_TEMA))
+
+    if fuera >= 1 and soporte == 0:
+        return (
+            False,
+            "El texto no corresponde a un ticket de soporte técnico "
+            "(parece un tema general, no relacionado con sistemas o TI).",
+        )
+    if soporte == 0:
+        return (
+            False,
+            "Describe un problema técnico concreto (software, red, acceso, "
+            "correo, base de datos, equipos, etc.).",
+        )
+    return True, ""
+
+
 def es_texto_valido(texto: str, detalle: dict | None = None) -> tuple[bool, str]:
     """Valida el ticket y devuelve (es_valido, motivo)."""
     if detalle is None:
@@ -123,6 +182,10 @@ def es_texto_valido(texto: str, detalle: dict | None = None) -> tuple[bool, str]
     if palabras_largas:
         muestra = ", ".join(palabras_largas[:3])
         return False, f"Palabra(s) anormalmente larga(s) detectada(s): {muestra}."
+
+    ok_soporte, motivo_soporte = es_contexto_soporte_tecnico(detalle["stems"])
+    if not ok_soporte:
+        return False, motivo_soporte
 
     return True, ""
 

@@ -2,6 +2,8 @@ import html
 
 import streamlit as st
 
+from config.constants import icono_categoria
+
 
 def _estilo_celda_matriz(valor: int, vmax: int) -> str:
     if vmax <= 0:
@@ -18,19 +20,62 @@ def _estilo_celda_matriz(valor: int, vmax: int) -> str:
     )
 
 
-def grafico_probabilidades_html(prob_dict: dict, categoria_pred: str):
+def _formatear_pct(prob: float) -> str:
+    pct = prob * 100
+    if pct >= 10:
+        return f"{pct:.0f}%"
+    if pct >= 1:
+        return f"{pct:.1f}%"
+    if pct >= 0.1:
+        return f"{pct:.2f}%"
+    if pct > 0.0001:
+        return f"{pct:.3f}%"
+    return "<0.1%"
+
+
+def _ancho_barra(prob: float) -> float:
+    """Escala visual: mínimo visible si prob > 0."""
+    pct = prob * 100
+    if pct <= 0:
+        return 0.0
+    return max(pct, 0.5)
+
+
+def grafico_probabilidades_html(prob_dict: dict, categoria_destacada: str):
+    """Muestra TODAS las categorías del modelo, sin ocultar probabilidades bajas."""
     ordenado = sorted(prob_dict.items(), key=lambda x: x[1], reverse=True)
-    st.markdown("**Probabilidades por categoría**")
+    if not ordenado:
+        return
+
+    filas = []
     for cat, prob in ordenado:
-        pct = int(round(prob * 100))
-        color = "#38a169" if cat == categoria_pred else "#4299e1"
-        col_label, col_bar, col_pct = st.columns([2, 5, 1])
-        with col_label:
-            st.markdown(f"**{html.escape(cat)}**")
-        with col_bar:
-            st.progress(pct / 100)
-        with col_pct:
-            st.markdown(f"**{pct}%**")
+        pct_txt = _formatear_pct(prob)
+        ancho = _ancho_barra(prob)
+        es_top = cat == categoria_destacada
+        clase = "prob-row prob-row-top" if es_top else "prob-row"
+        icono = icono_categoria(cat)
+        filas.append(
+            f'<div class="{clase}">'
+            f'  <div class="prob-label">{icono} {html.escape(cat)}</div>'
+            f'  <div class="prob-track"><div class="prob-fill" style="width:{ancho:.2f}%;"></div></div>'
+            f'  <div class="prob-pct">{pct_txt}</div>'
+            f"</div>"
+        )
+
+    st.markdown(
+        f"""
+        <div class="prob-panel">
+            <div class="prob-panel-title">
+                Probabilidades por categoría
+                <span class="prob-sum-hint">(suma 100% · {len(ordenado)} clases)</span>
+            </div>
+            <div class="prob-list">
+                {"".join(filas)}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_matriz_confusion_html(

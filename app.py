@@ -5,8 +5,8 @@
 import streamlit as st
 
 from services.metrics import cargar_metricas
-from services.model_loader import cargar_modelo
-from services.session import asegurar_contenido_inicial, init_session
+from services.model_loader import obtener_modelo
+from services.session import init_session
 from ui.pages.clasificar import pagina_clasificar
 from ui.pages.comparacion import pagina_comparacion
 from ui.pages.historial import pagina_historial
@@ -29,9 +29,7 @@ def main():
     init_session()
     render_sidebar()
 
-    datos_modelo = cargar_modelo()
-    if datos_modelo:
-        asegurar_contenido_inicial(datos_modelo)
+    datos_modelo = obtener_modelo()
 
     pagina = st.session_state.pagina
     necesita_metricas = pagina in ("inicio", "metricas", "comparacion")

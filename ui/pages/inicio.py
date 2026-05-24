@@ -19,6 +19,7 @@ def pagina_inicio(datos_modelo, metricas):
         if st.button("🔄 Reintentar carga del modelo"):
             st.cache_resource.clear()
             st.cache_data.clear()
+            st.rerun()
         return
 
     vista_clasificador(datos_modelo, num_input=1, num_resultado=2)

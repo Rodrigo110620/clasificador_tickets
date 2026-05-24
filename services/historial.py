@@ -21,8 +21,9 @@ def agregar_al_historial(ticket: str, resultado: dict):
     entrada = {
         "ticket": ticket,
         "ticket_corto": ticket[:90] + ("..." if len(ticket) > 90 else ""),
-        "categoria": resultado["categoria"],
+        "categoria": resultado.get("categoria_modelo", resultado["categoria"]),
         "confianza": resultado["confianza"],
+        "desconocido": resultado.get("desconocido", False),
         "fecha": datetime.now().strftime("%H:%M %d/%m/%Y"),
     }
     for i, item in enumerate(st.session_state.historial):
