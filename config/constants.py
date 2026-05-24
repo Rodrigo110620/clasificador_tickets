@@ -6,19 +6,22 @@ RUTA_MODELO = "models/mejor_modelo.pkl.gz"
 RUTA_MEMORIA = "models/memoria.json"
 
 # Clasificación (umbral adaptativo según cantidad de categorías)
-UMBRAL_CONFIANZA_MIN = 0.18
-UMBRAL_MARGEN_SEGUNDA = 0.05
+UMBRAL_CONFIANZA_MIN = 0.25   # subido de 0.18 → pide mínimo 25% de confianza
+UMBRAL_MARGEN_SEGUNDA = 0.15  # subido de 0.05 → exige 15% de margen real entre top-1 y top-2
 CATEGORIA_DESCONOCIDA = "Otros"
 MENSAJE_CATEGORIA_DESCONOCIDA = (
     "Confianza baja o resultado ambiguo — requiere revisión manual"
 )
 
+# Umbral visual: no mostrar categorías con menos de este % en el gráfico
+UMBRAL_VISUAL_PROB = 0.05
+
 
 def umbral_confiancia_dinamico(n_categorias: int) -> float:
-    """Mínimo razonable para N clases (con 12 clases ≈ 20%)."""
+    """Mínimo razonable para N clases (con 12 clases ≈ 25%)."""
     if n_categorias <= 1:
         return 0.5
-    return max(UMBRAL_CONFIANZA_MIN, 2.2 / n_categorias)
+    return max(UMBRAL_CONFIANZA_MIN, 2.5 / n_categorias)
 
 
 def es_clasificacion_ambigua(probabilidades_ordenadas: list) -> tuple[bool, float, float]:

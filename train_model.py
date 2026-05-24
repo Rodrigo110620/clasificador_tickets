@@ -98,9 +98,10 @@ def construir_pipelines() -> dict:
             ("tfidf", TfidfVectorizer(**tfidf)),
             ("clf", LogisticRegression(
                 max_iter=2000,
-                C=0.1,
+                C=0.5,                    # más flexible con pocos datos
                 solver="lbfgs",
                 multi_class="multinomial",
+                class_weight="balanced",  # FIX: compensa desbalance entre categorías
                 random_state=42,
             )),
         ]),
@@ -167,11 +168,18 @@ def optimizar_naive_bayes(X_train, y_train) -> Pipeline:
 
 
 def calibrar_probabilidades(pipeline, X_train, y_train):
-    """Suaviza probabilidades extremas (evita 100% / 0% rígidos)."""
+    """
+    FIX: usa 'isotonic' cuando hay suficientes datos (>200 muestras),
+    'sigmoid' para datasets pequeños. Isotonic es más fiel a las
+    probabilidades reales y no dispersa tanto entre categorías.
+    """
     cv = _cv_folds(y_train)
+    # Con pocos datos sigmoid es más estable; isotonic con más datos es más preciso
+    method = "isotonic" if len(X_train) > 200 else "sigmoid"
+    print(f"  Método de calibración: {method} (n_train={len(X_train)})")
     calibrado = CalibratedClassifierCV(
         pipeline,
-        method="sigmoid",
+        method=method,
         cv=StratifiedKFold(n_splits=cv, shuffle=True, random_state=42),
     )
     calibrado.fit(X_train, y_train)

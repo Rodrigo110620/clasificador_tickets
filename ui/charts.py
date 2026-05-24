@@ -2,7 +2,7 @@ import html
 
 import streamlit as st
 
-from config.constants import icono_categoria
+from config.constants import UMBRAL_VISUAL_PROB, icono_categoria
 
 
 def _estilo_celda_matriz(valor: int, vmax: int) -> str:
@@ -10,10 +10,10 @@ def _estilo_celda_matriz(valor: int, vmax: int) -> str:
         ratio = 0.0
     else:
         ratio = min(valor / vmax, 1.0)
-    fondo_r = int(235 - ratio * (235 - 43))
-    fondo_g = int(248 - ratio * (248 - 108))
-    fondo_b = int(255 - ratio * (255 - 176))
-    texto = "#ffffff" if ratio > 0.5 else "#1a202c"
+    fondo_r = int(235 - ratio * (235 - 29))
+    fondo_g = int(248 - ratio * (248 - 78))
+    fondo_b = int(255 - ratio * (255 - 216))
+    texto = "#ffffff" if ratio > 0.55 else "#1e293b"
     return (
         f"background:#{fondo_r:02x}{fondo_g:02x}{fondo_b:02x} !important;"
         f"color:{texto} !important;"
@@ -34,7 +34,6 @@ def _formatear_pct(prob: float) -> str:
 
 
 def _ancho_barra(prob: float) -> float:
-    """Escala visual: mínimo visible si prob > 0."""
     pct = prob * 100
     if pct <= 0:
         return 0.0
@@ -42,13 +41,25 @@ def _ancho_barra(prob: float) -> float:
 
 
 def grafico_probabilidades_html(prob_dict: dict, categoria_destacada: str):
-    """Muestra TODAS las categorías del modelo, sin ocultar probabilidades bajas."""
+    """
+    Muestra las categorías del modelo filtrando las que están
+    por debajo de UMBRAL_VISUAL_PROB (5%) para no confundir al usuario.
+    La categoría top siempre se muestra aunque esté por debajo del umbral.
+    """
     ordenado = sorted(prob_dict.items(), key=lambda x: x[1], reverse=True)
     if not ordenado:
         return
 
+    # FIX: filtrar probabilidades residuales — solo mostrar >= 5% o la top-1
+    top_cat = ordenado[0][0]
+    visible = [
+        (cat, prob) for cat, prob in ordenado
+        if prob >= UMBRAL_VISUAL_PROB or cat == top_cat
+    ]
+    ocultas = len(ordenado) - len(visible)
+
     filas = []
-    for cat, prob in ordenado:
+    for cat, prob in visible:
         pct_txt = _formatear_pct(prob)
         ancho = _ancho_barra(prob)
         es_top = cat == categoria_destacada
@@ -62,12 +73,14 @@ def grafico_probabilidades_html(prob_dict: dict, categoria_destacada: str):
             f"</div>"
         )
 
+    hint_ocultas = f" · {ocultas} categorías omitidas (&lt;5%)" if ocultas > 0 else ""
+
     st.markdown(
         f"""
         <div class="prob-panel">
             <div class="prob-panel-title">
                 Probabilidades por categoría
-                <span class="prob-sum-hint">(suma 100% · {len(ordenado)} clases)</span>
+                <span class="prob-sum-hint">(suma 100% · {len(visible)} mostradas{hint_ocultas})</span>
             </div>
             <div class="prob-list">
                 {"".join(filas)}
@@ -106,7 +119,7 @@ def render_matriz_confusion_html(
             <table class="tabla-matriz">
                 <thead>
                     <tr>
-                        <th style="background:#4a5568 !important;">Real \\ Pred</th>
+                        <th style="background:#1e3a5f !important;">Real \\ Pred</th>
                         {encabezado}
                     </tr>
                 </thead>

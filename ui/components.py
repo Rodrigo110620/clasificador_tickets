@@ -276,6 +276,11 @@ def render_ejemplos_por_categoria():
                 )
 
 
+def _guardar_ticket_input():
+    """on_change del textarea: persiste el valor cada vez que el usuario escribe."""
+    st.session_state.ticket_input = st.session_state.ticket_input
+
+
 def seccion_input(
     mostrar_titulo: bool = True,
     mostrar_boton: bool = True,
@@ -288,13 +293,19 @@ def seccion_input(
         '<p class="input-label">Escribe aquí el problema o solicitud del usuario:</p>',
         unsafe_allow_html=True,
     )
+
+    # La clave es NO tocar session_state["ticket_input"] antes de renderizar el widget.
+    # Streamlit lo restaura solo desde session_state cuando el widget se recrea al
+    # volver a esta página. on_change lo mantiene actualizado mientras el usuario escribe.
     ticket = st.text_area(
         "Descripción del problema",
         height=130,
         label_visibility="collapsed",
         key="ticket_input",
         placeholder="Describe el problema o solicitud del usuario…",
+        on_change=_guardar_ticket_input,
     )
+
     st.markdown(
         f'<p class="char-counter">Caracteres: {len(ticket)}</p>',
         unsafe_allow_html=True,
