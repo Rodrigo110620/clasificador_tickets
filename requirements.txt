@@ -1,0 +1,18 @@
+# requirements.txt
+# Dependencias del proyecto: Clasificador de Tickets de Soporte Técnico
+# Instalar con: pip install -r requirements.txt
+
+# Machine Learning y preprocesamiento
+scikit-learn==1.4.2
+pandas==2.2.2
+numpy==1.26.4
+
+# Procesamiento de Lenguaje Natural
+nltk==3.8.1
+
+# Interfaz gráfica web
+streamlit==1.35.0
+
+# Visualización
+matplotlib==3.9.0
+seaborn==0.13.2

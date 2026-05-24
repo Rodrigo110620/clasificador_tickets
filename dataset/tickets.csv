@@ -1,0 +1,599 @@
+ticket,categoria
+La interfaz de ventas tiene error al filtrar por rango de fechas,Bug de Software
+El sistema de nómina arroja error al calcular totales con descuento,Bug de Software
+La aplicación se cierra inesperadamente al abrir archivos en producción,Bug de Software
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+Necesito acceso de administrador al módulo de ventas,Credenciales
+Mi usuario fue desactivado y no puedo entrar a intranet,Credenciales
+El formulario de reportes no valida correctamente el campo de RUT,Bug de Software
+El sistema de reportes arroja error al calcular totales con descuento,Bug de Software
+Hay registros duplicados en la tabla transacciones que afectan los reportes,Base de Datos
+La interfaz de producción tiene error al filtrar por rango de fechas,Bug de Software
+Se requiere optimización de consultas lentas en el módulo de reportes,Base de Datos
+"La base de datos MongoDB no acepta nuevas conexiones, límite alcanzado",Base de Datos
+"No puedo cambiar mi contraseña, el ERP dice que no cumple requisitos",Credenciales
+El job programado de mantenimiento de MongoDB falló esta madrugada,Base de Datos
+Las notificaciones del módulo producción no llegan a los usuarios correctos,Bug de Software
+El sistema de producción arroja error al calcular totales con descuento,Bug de Software
+La antena WiFi del piso 4 no da señal en toda el área,Infraestructura
+La migración de datos a MongoDB falló y necesitamos rollback urgente,Base de Datos
+El rack del datacenter del piso 3 tiene temperatura elevada,Infraestructura
+Se requiere optimización de consultas lentas en el módulo de facturación,Base de Datos
+El botón de exportar a Excel del módulo producción no funciona,Bug de Software
+Los backups automáticos del servidor DB-PROD fallaron esta noche,Infraestructura
+El dashboard de reportes no actualiza los datos en tiempo real,Bug de Software
+La aplicación web de inventario no carga correctamente en Chrome,Bug de Software
+El botón de exportar a Excel del módulo inventario no funciona,Bug de Software
+La consulta SQL en la tabla pedidos tarda demasiado en ejecutarse,Base de Datos
+El firewall está bloqueando tráfico legítimo del módulo de nómina,Infraestructura
+Olvidé mi contraseña del portal corporativo y necesito restablecerla,Credenciales
+Mi usuario fue desactivado y no puedo entrar a CRM,Credenciales
+"Hay caída general de red en la sede sur, todos sin conectividad",Infraestructura
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+El UPS del servidor APP01 reporta batería en nivel crítico,Infraestructura
+Los backups automáticos del servidor DB-PROD fallaron esta noche,Infraestructura
+Necesito exportar datos históricos de pedidos al sistema de reportes,Base de Datos
+Mi sesión expira constantemente en CRM aunque estoy activo,Credenciales
+El workflow de aprobación en ventas se queda en estado pendiente,Bug de Software
+El firewall está bloqueando tráfico legítimo del módulo de producción,Infraestructura
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+El reporte mensual de compras no incluye registros del último día,Bug de Software
+El servicio de correo corporativo no está disponible para 4 usuarios,Infraestructura
+"No puedo cambiar mi contraseña, el CRM dice que no cumple requisitos",Credenciales
+El sistema ERP me pide cambiar contraseña pero no me deja entrar,Credenciales
+El índice de la tabla clientes está fragmentado y causa lentitud general,Base de Datos
+El servidor web WEB01 reporta errores 503 de indisponibilidad,Infraestructura
+No recuerdo el PIN de acceso al CRM,Credenciales
+Error de conexión al servidor PostgreSQL desde la aplicación de facturación,Base de Datos
+"No puedo cambiar mi contraseña, el sistema de nómina dice que no cumple requisitos",Credenciales
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+La aplicación se cierra inesperadamente al abrir archivos en nómina,Bug de Software
+El reporte mensual de contabilidad no incluye registros del último día,Bug de Software
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+Error de integridad referencial al insertar en tabla empleados,Base de Datos
+El módulo RRHH no respeta los permisos de rol configurados,Bug de Software
+El switch del piso 4 está caído y no hay conectividad en el área,Infraestructura
+"Hay caída general de red en la sede sur, todos sin conectividad",Infraestructura
+Hay registros duplicados en la tabla facturas que afectan los reportes,Base de Datos
+Las notificaciones del módulo inventario no llegan a los usuarios correctos,Bug de Software
+La aplicación web de reportes no carga correctamente en Chrome,Bug de Software
+Los backups automáticos del servidor MAIL-SRV fallaron esta noche,Infraestructura
+El servidor web MAIL-SRV reporta errores 503 de indisponibilidad,Infraestructura
+El sistema ERP me pide cambiar contraseña pero no me deja entrar,Credenciales
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+La aplicación de facturación lanza error 500 al intentar guardar registros,Bug de Software
+El servidor DC01 no responde a peticiones de red desde las 08:00,Infraestructura
+Necesito restaurar el backup de MongoDB del día de ayer urgente,Base de Datos
+La base de datos retorna error de deadlock en producción en tabla productos,Base de Datos
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+Necesito restaurar el backup de PostgreSQL del día de ayer urgente,Base de Datos
+El log de transacciones de MongoDB llenó el disco y detuvo el servicio,Base de Datos
+La integración entre producción y el sistema externo falla al sincronizar,Bug de Software
+Necesito resetear el acceso del usuario jperez en CRM,Credenciales
+Olvidé mi contraseña del sistema de nómina y necesito restablecerla,Credenciales
+No recuerdo el PIN de acceso al plataforma académica,Credenciales
+La interfaz de reportes tiene error al filtrar por rango de fechas,Bug de Software
+La aplicación de producción lanza error 500 al intentar guardar registros,Bug de Software
+Se requiere optimización de consultas lentas en el módulo de reportes,Base de Datos
+El rack del datacenter del piso 3 tiene temperatura elevada,Infraestructura
+El job programado de mantenimiento de MongoDB falló esta madrugada,Base de Datos
+Me aparece error de usuario inactivo al intentar entrar al intranet,Credenciales
+El módulo de importación CSV de nómina falla con archivos grandes,Bug de Software
+El dashboard de nómina no actualiza los datos en tiempo real,Bug de Software
+El switch del piso 1 está caído y no hay conectividad en el área,Infraestructura
+Error ORA-00942 table or view does not exist al consultar clientes,Base de Datos
+Las notificaciones del módulo compras no llegan a los usuarios correctos,Bug de Software
+El firewall está bloqueando tráfico legítimo del módulo de inventario,Infraestructura
+"No puedo iniciar sesión en el sistema plataforma académica, mi contraseña no funciona",Credenciales
+Mi cuenta fue bloqueada después de 8 intentos fallidos en CRM,Credenciales
+Olvidé mi contraseña del ERP y necesito restablecerla,Credenciales
+La migración de datos a SQL Server falló y necesitamos rollback urgente,Base de Datos
+Los backups automáticos del servidor DB-PROD fallaron esta noche,Infraestructura
+El cálculo de compras es erróneo cuando hay más de 3 decimales,Bug de Software
+La consulta SQL en la tabla productos tarda demasiado en ejecutarse,Base de Datos
+El módulo de importación CSV de RRHH falla con archivos grandes,Bug de Software
+La aplicación de ventas lanza error 500 al intentar guardar registros,Bug de Software
+"No puedo iniciar sesión en el sistema CRM, mi contraseña no funciona",Credenciales
+Mi cuenta fue bloqueada después de 4 intentos fallidos en plataforma académica,Credenciales
+El servidor DB-PROD no responde a peticiones de red desde las 09:30,Infraestructura
+El firewall está bloqueando tráfico legítimo del módulo de producción,Infraestructura
+El firewall está bloqueando tráfico legítimo del módulo de facturación,Infraestructura
+No recuerdo el PIN de acceso al sistema de nómina,Credenciales
+Mi usuario fue desactivado y no puedo entrar a plataforma académica,Credenciales
+La pantalla de nómina muestra montos incorrectos en los totales,Bug de Software
+"Hay caída general de red en la sede La Paz, todos sin conectividad",Infraestructura
+La base de datos retorna error de deadlock en producción en tabla transacciones,Base de Datos
+Error ORA-00942 table or view does not exist al consultar pedidos,Base de Datos
+La consulta SQL en la tabla pedidos tarda demasiado en ejecutarse,Base de Datos
+Se requiere optimización de consultas lentas en el módulo de inventario,Base de Datos
+El módulo compras no respeta los permisos de rol configurados,Bug de Software
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+La conexión pool de PostgreSQL se agota en horas pico con muchos usuarios,Base de Datos
+El servidor de base de datos MySQL está caído y no responde,Base de Datos
+No tengo acceso al plataforma académica con mis credenciales actuales,Credenciales
+Necesito restaurar el backup de Oracle del día de ayer urgente,Base de Datos
+El sistema sistema de inventario me pide cambiar contraseña pero no me deja entrar,Credenciales
+El motor MySQL tiene problemas de rendimiento severos desde las 07:15,Base de Datos
+El dashboard de ventas no actualiza los datos en tiempo real,Bug de Software
+La conexión pool de MongoDB se agota en horas pico con muchos usuarios,Base de Datos
+"La base de datos MongoDB no acepta nuevas conexiones, límite alcanzado",Base de Datos
+El servidor WEB01 no responde a peticiones de red desde las 16:45,Infraestructura
+Los backups automáticos del servidor APP01 fallaron esta noche,Infraestructura
+El UPS del servidor FILE-SRV reporta batería en nivel crítico,Infraestructura
+La antena WiFi del piso 2 no da señal en toda el área,Infraestructura
+La aplicación se cierra inesperadamente al abrir archivos en compras,Bug de Software
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+La integración entre facturación y el sistema externo falla al sincronizar,Bug de Software
+La base de datos retorna error de deadlock en producción en tabla pedidos,Base de Datos
+El servidor de monitoreo Nagios perdió conectividad con 6 hosts,Infraestructura
+El servidor de archivos FILE-SRV no es accesible desde la red interna,Infraestructura
+"La base de datos MySQL no acepta nuevas conexiones, límite alcanzado",Base de Datos
+El workflow de aprobación en inventario se queda en estado pendiente,Bug de Software
+La conexión pool de MySQL se agota en horas pico con muchos usuarios,Base de Datos
+El dashboard de reportes no actualiza los datos en tiempo real,Bug de Software
+La aplicación web de compras no carga correctamente en Chrome,Bug de Software
+La aplicación web de reportes no carga correctamente en Chrome,Bug de Software
+Me aparece error de usuario inactivo al intentar entrar al sistema de nómina,Credenciales
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+El módulo producción no respeta los permisos de rol configurados,Bug de Software
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+El sistema sistema contable me pide cambiar contraseña pero no me deja entrar,Credenciales
+Error de integridad referencial al insertar en tabla empleados,Base de Datos
+"La base de datos SQL Server no acepta nuevas conexiones, límite alcanzado",Base de Datos
+El servidor APP01 no responde a peticiones de red desde las 09:30,Infraestructura
+Necesito extender permisos del usuario jperez al módulo de ventas,Credenciales
+No recuerdo el PIN de acceso al sistema contable,Credenciales
+El servidor de monitoreo Nagios perdió conectividad con 4 hosts,Infraestructura
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+Olvidé mi contraseña del portal corporativo y necesito restablecerla,Credenciales
+La app móvil se congela al sincronizar datos del módulo RRHH,Bug de Software
+Espacio en disco del servidor Oracle llegó al 95% de capacidad,Base de Datos
+El servidor de archivos DC01 no es accesible desde la red interna,Infraestructura
+La integración entre reportes y el sistema externo falla al sincronizar,Bug de Software
+"No puedo iniciar sesión en el sistema plataforma académica, mi contraseña no funciona",Credenciales
+Error de autenticación al intentar ingresar con mi cuenta a sistema contable,Credenciales
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+Necesito acceso de administrador al módulo de reportes,Credenciales
+No tengo acceso al sistema de nómina con mis credenciales actuales,Credenciales
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+Mi cuenta fue bloqueada después de 3 intentos fallidos en CRM,Credenciales
+El rack del datacenter del piso 4 tiene temperatura elevada,Infraestructura
+El firewall está bloqueando tráfico legítimo del módulo de compras,Infraestructura
+La aplicación web de ventas no carga correctamente en Chrome,Bug de Software
+El módulo de reportes genera datos incorrectos en el PDF de reportes,Bug de Software
+El módulo de reportes genera datos incorrectos en el PDF de contabilidad,Bug de Software
+El módulo de importación CSV de compras falla con archivos grandes,Bug de Software
+El servidor de archivos MAIL-SRV no es accesible desde la red interna,Infraestructura
+"Hay caída general de red en la sede norte, todos sin conectividad",Infraestructura
+El servicio de correo corporativo no está disponible para 7 usuarios,Infraestructura
+El servidor de monitoreo Nagios perdió conectividad con 9 hosts,Infraestructura
+La app móvil se congela al sincronizar datos del módulo producción,Bug de Software
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+No tengo acceso al CRM con mis credenciales actuales,Credenciales
+Se requiere optimización de consultas lentas en el módulo de ventas,Base de Datos
+Mi cuenta fue bloqueada después de 2 intentos fallidos en portal corporativo,Credenciales
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+La app móvil se congela al sincronizar datos del módulo reportes,Bug de Software
+El enlace de fibra óptica con la sede sur está intermitente,Infraestructura
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+La migración de datos a PostgreSQL falló y necesitamos rollback urgente,Base de Datos
+El sistema sistema de inventario me pide cambiar contraseña pero no me deja entrar,Credenciales
+Necesito restaurar el backup de Oracle del día de ayer urgente,Base de Datos
+La aplicación de compras lanza error 500 al intentar guardar registros,Bug de Software
+El cálculo de inventario es erróneo cuando hay más de 8 decimales,Bug de Software
+Las notificaciones del módulo compras no llegan a los usuarios correctos,Bug de Software
+El rack del datacenter del piso 2 tiene temperatura elevada,Infraestructura
+Solicito creación de nuevo usuario en CRM para empleado nuevo,Credenciales
+El módulo compras no respeta los permisos de rol configurados,Bug de Software
+El servidor de base de datos PostgreSQL está caído y no responde,Base de Datos
+Error de integridad referencial al insertar en tabla pedidos,Base de Datos
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+Error de autenticación al intentar ingresar con mi cuenta a intranet,Credenciales
+La integración entre contabilidad y el sistema externo falla al sincronizar,Bug de Software
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+El módulo de reportes genera datos incorrectos en el PDF de compras,Bug de Software
+"La base de datos Oracle no acepta nuevas conexiones, límite alcanzado",Base de Datos
+El servidor web DC01 reporta errores 503 de indisponibilidad,Infraestructura
+Error de conexión al servidor SQL Server desde la aplicación de nómina,Base de Datos
+El motor Oracle tiene problemas de rendimiento severos desde las 09:30,Base de Datos
+La app móvil se congela al sincronizar datos del módulo compras,Bug de Software
+La interfaz de producción tiene error al filtrar por rango de fechas,Bug de Software
+Error de integridad referencial al insertar en tabla productos,Base de Datos
+La conexión pool de PostgreSQL se agota en horas pico con muchos usuarios,Base de Datos
+Necesito acceso de administrador al módulo de contabilidad,Credenciales
+Necesito restaurar el backup de SQL Server del día de ayer urgente,Base de Datos
+El procedimiento almacenado sp_actualizar_stock retorna resultados incorrectos,Base de Datos
+Error ORA-00942 table or view does not exist al consultar pedidos,Base de Datos
+Me aparece error de usuario inactivo al intentar entrar al CRM,Credenciales
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+El servidor de monitoreo Nagios perdió conectividad con 7 hosts,Infraestructura
+El servidor WEB01 no responde a peticiones de red desde las 16:45,Infraestructura
+El sistema de producción duplica registros al actualizar datos,Bug de Software
+El formulario de compras no valida correctamente el campo de RUT,Bug de Software
+El índice de la tabla usuarios está fragmentado y causa lentitud general,Base de Datos
+Se requiere optimización de consultas lentas en el módulo de producción,Base de Datos
+El procedimiento almacenado sp_generar_reporte retorna resultados incorrectos,Base de Datos
+"No puedo iniciar sesión en el sistema ERP, mi contraseña no funciona",Credenciales
+Falló la replicación entre el servidor primario y secundario de SQL Server,Base de Datos
+Mi sesión expira constantemente en plataforma académica aunque estoy activo,Credenciales
+El servicio de correo corporativo no está disponible para 2 usuarios,Infraestructura
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+El servidor web APP01 reporta errores 503 de indisponibilidad,Infraestructura
+Las notificaciones del módulo nómina no llegan a los usuarios correctos,Bug de Software
+La aplicación de inventario lanza error 500 al intentar guardar registros,Bug de Software
+El log de transacciones de Oracle llenó el disco y detuvo el servicio,Base de Datos
+El job programado de mantenimiento de MySQL falló esta madrugada,Base de Datos
+El servicio de correo corporativo no está disponible para 2 usuarios,Infraestructura
+El rack del datacenter del piso 2 tiene temperatura elevada,Infraestructura
+Necesito exportar datos históricos de empleados al sistema de reportes,Base de Datos
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+Me aparece error de usuario inactivo al intentar entrar al portal corporativo,Credenciales
+La migración de datos a Oracle falló y necesitamos rollback urgente,Base de Datos
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+El módulo de importación CSV de reportes falla con archivos grandes,Bug de Software
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+Olvidé mi contraseña del sistema contable y necesito restablecerla,Credenciales
+Necesito resetear el acceso del usuario jmedina en sistema contable,Credenciales
+Mi cuenta fue bloqueada después de 3 intentos fallidos en intranet,Credenciales
+El switch del piso 2 está caído y no hay conectividad en el área,Infraestructura
+Error ORA-00942 table or view does not exist al consultar clientes,Base de Datos
+El servidor de base de datos PostgreSQL está caído y no responde,Base de Datos
+La consulta SQL en la tabla facturas tarda demasiado en ejecutarse,Base de Datos
+El botón de exportar a Excel del módulo facturación no funciona,Bug de Software
+La pantalla de ventas muestra montos incorrectos en los totales,Bug de Software
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+La búsqueda avanzada del módulo nómina no retorna resultados correctos,Bug de Software
+La consulta SQL en la tabla transacciones tarda demasiado en ejecutarse,Base de Datos
+Necesito extender permisos del usuario mrodriguez al módulo de RRHH,Credenciales
+La conexión pool de MongoDB se agota en horas pico con muchos usuarios,Base de Datos
+El sistema de producción duplica registros al actualizar datos,Bug de Software
+El índice de la tabla transacciones está fragmentado y causa lentitud general,Base de Datos
+La antena WiFi del piso 3 no da señal en toda el área,Infraestructura
+La antena WiFi del piso 1 no da señal en toda el área,Infraestructura
+El rack del datacenter del piso 3 tiene temperatura elevada,Infraestructura
+"Hay caída general de red en la sede central, todos sin conectividad",Infraestructura
+El índice de la tabla facturas está fragmentado y causa lentitud general,Base de Datos
+Necesito extender permisos del usuario tfigueroa al módulo de facturación,Credenciales
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+Error de conexión al servidor SQL Server desde la aplicación de ventas,Base de Datos
+Mi usuario fue desactivado y no puedo entrar a portal corporativo,Credenciales
+El sistema portal corporativo me pide cambiar contraseña pero no me deja entrar,Credenciales
+Olvidé mi contraseña del portal corporativo y necesito restablecerla,Credenciales
+El sistema de ventas duplica registros al actualizar datos,Bug de Software
+La interfaz de facturación tiene error al filtrar por rango de fechas,Bug de Software
+Solicito creación de nuevo usuario en sistema contable para empleado nuevo,Credenciales
+Error de autenticación al intentar ingresar con mi cuenta a sistema de inventario,Credenciales
+"No puedo cambiar mi contraseña, el portal corporativo dice que no cumple requisitos",Credenciales
+El sistema de contabilidad arroja error al calcular totales con descuento,Bug de Software
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+No recuerdo el PIN de acceso al sistema de nómina,Credenciales
+Necesito resetear el acceso del usuario tfigueroa en portal corporativo,Credenciales
+El workflow de aprobación en nómina se queda en estado pendiente,Bug de Software
+El índice de la tabla clientes está fragmentado y causa lentitud general,Base de Datos
+El cálculo de nómina es erróneo cuando hay más de 2 decimales,Bug de Software
+Necesito acceso de administrador al módulo de compras,Credenciales
+El log de transacciones de SQL Server llenó el disco y detuvo el servicio,Base de Datos
+Necesito restaurar el backup de MySQL del día de ayer urgente,Base de Datos
+La aplicación de compras lanza error 500 al intentar guardar registros,Bug de Software
+La antena WiFi del piso 4 no da señal en toda el área,Infraestructura
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+El sistema portal corporativo me pide cambiar contraseña pero no me deja entrar,Credenciales
+El servidor de archivos MAIL-SRV no es accesible desde la red interna,Infraestructura
+Espacio en disco del servidor MySQL llegó al 95% de capacidad,Base de Datos
+Espacio en disco del servidor SQL Server llegó al 95% de capacidad,Base de Datos
+El servidor web WEB01 reporta errores 503 de indisponibilidad,Infraestructura
+Error de conexión al servidor SQL Server desde la aplicación de reportes,Base de Datos
+"La base de datos MongoDB no acepta nuevas conexiones, límite alcanzado",Base de Datos
+El workflow de aprobación en facturación se queda en estado pendiente,Bug de Software
+No tengo acceso al ERP con mis credenciales actuales,Credenciales
+Falló la replicación entre el servidor primario y secundario de MongoDB,Base de Datos
+El formulario de RRHH no valida correctamente el campo de RUT,Bug de Software
+La aplicación se cierra inesperadamente al abrir archivos en RRHH,Bug de Software
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+Necesito extender permisos del usuario jmedina al módulo de ventas,Credenciales
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+La consulta SQL en la tabla usuarios tarda demasiado en ejecutarse,Base de Datos
+Solicito restablecimiento urgente de contraseña para el usuario tfigueroa,Credenciales
+El job programado de mantenimiento de SQL Server falló esta madrugada,Base de Datos
+La búsqueda avanzada del módulo contabilidad no retorna resultados correctos,Bug de Software
+El servidor de monitoreo Nagios perdió conectividad con 6 hosts,Infraestructura
+Solicito creación de nuevo usuario en portal corporativo para empleado nuevo,Credenciales
+Olvidé mi contraseña del portal corporativo y necesito restablecerla,Credenciales
+La interfaz de facturación tiene error al filtrar por rango de fechas,Bug de Software
+El job programado de mantenimiento de Oracle falló esta madrugada,Base de Datos
+El motor SQL Server tiene problemas de rendimiento severos desde las 07:15,Base de Datos
+Necesito exportar datos históricos de facturas al sistema de reportes,Base de Datos
+La app móvil se congela al sincronizar datos del módulo compras,Bug de Software
+Mi usuario fue desactivado y no puedo entrar a sistema contable,Credenciales
+El botón de exportar a Excel del módulo ventas no funciona,Bug de Software
+La consulta SQL en la tabla facturas tarda demasiado en ejecutarse,Base de Datos
+El switch del piso 3 está caído y no hay conectividad en el área,Infraestructura
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+El switch del piso 4 está caído y no hay conectividad en el área,Infraestructura
+El índice de la tabla clientes está fragmentado y causa lentitud general,Base de Datos
+Necesito restaurar el backup de PostgreSQL del día de ayer urgente,Base de Datos
+Solicito restablecimiento urgente de contraseña para el usuario jmedina,Credenciales
+Error de conexión al servidor MySQL desde la aplicación de producción,Base de Datos
+El switch del piso 2 está caído y no hay conectividad en el área,Infraestructura
+Necesito restaurar el backup de PostgreSQL del día de ayer urgente,Base de Datos
+La conexión pool de SQL Server se agota en horas pico con muchos usuarios,Base de Datos
+El procedimiento almacenado sp_generar_reporte retorna resultados incorrectos,Base de Datos
+Error ORA-00942 table or view does not exist al consultar productos,Base de Datos
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+La antena WiFi del piso 3 no da señal en toda el área,Infraestructura
+Solicito restablecimiento urgente de contraseña para el usuario tfigueroa,Credenciales
+Me aparece error de usuario inactivo al intentar entrar al sistema de inventario,Credenciales
+El reporte mensual de inventario no incluye registros del último día,Bug de Software
+Falló la replicación entre el servidor primario y secundario de MongoDB,Base de Datos
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+Error de autenticación al intentar ingresar con mi cuenta a sistema de inventario,Credenciales
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+El servidor web APP01 reporta errores 503 de indisponibilidad,Infraestructura
+Se requiere optimización de consultas lentas en el módulo de facturación,Base de Datos
+La pantalla de nómina muestra montos incorrectos en los totales,Bug de Software
+El workflow de aprobación en nómina se queda en estado pendiente,Bug de Software
+La consulta SQL en la tabla clientes tarda demasiado en ejecutarse,Base de Datos
+La base de datos retorna error de deadlock en producción en tabla clientes,Base de Datos
+El reporte mensual de reportes no incluye registros del último día,Bug de Software
+El servidor de archivos WEB01 no es accesible desde la red interna,Infraestructura
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+El workflow de aprobación en RRHH se queda en estado pendiente,Bug de Software
+El firewall está bloqueando tráfico legítimo del módulo de reportes,Infraestructura
+Necesito extender permisos del usuario mrodriguez al módulo de reportes,Credenciales
+El servidor de base de datos MongoDB está caído y no responde,Base de Datos
+La interfaz de nómina tiene error al filtrar por rango de fechas,Bug de Software
+El enlace de fibra óptica con la sede sur está intermitente,Infraestructura
+"No puedo iniciar sesión en el sistema ERP, mi contraseña no funciona",Credenciales
+El módulo contabilidad no respeta los permisos de rol configurados,Bug de Software
+La aplicación web de nómina no carga correctamente en Chrome,Bug de Software
+Necesito exportar datos históricos de pedidos al sistema de reportes,Base de Datos
+El log de transacciones de MongoDB llenó el disco y detuvo el servicio,Base de Datos
+La antena WiFi del piso 3 no da señal en toda el área,Infraestructura
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+El servicio de correo corporativo no está disponible para 8 usuarios,Infraestructura
+Solicito creación de nuevo usuario en ERP para empleado nuevo,Credenciales
+El sistema de reportes arroja error al calcular totales con descuento,Bug de Software
+El sistema de ventas arroja error al calcular totales con descuento,Bug de Software
+Error de autenticación al intentar ingresar con mi cuenta a sistema de nómina,Credenciales
+Mi sesión expira constantemente en ERP aunque estoy activo,Credenciales
+"No puedo iniciar sesión en el sistema CRM, mi contraseña no funciona",Credenciales
+Los backups automáticos del servidor MAIL-SRV fallaron esta noche,Infraestructura
+El reporte mensual de contabilidad no incluye registros del último día,Bug de Software
+La interfaz de inventario tiene error al filtrar por rango de fechas,Bug de Software
+Solicito creación de nuevo usuario en CRM para empleado nuevo,Credenciales
+El módulo de reportes genera datos incorrectos en el PDF de facturación,Bug de Software
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+La migración de datos a Oracle falló y necesitamos rollback urgente,Base de Datos
+La aplicación se cierra inesperadamente al abrir archivos en ventas,Bug de Software
+Mi cuenta fue bloqueada después de 2 intentos fallidos en sistema contable,Credenciales
+El log de transacciones de MySQL llenó el disco y detuvo el servicio,Base de Datos
+Mi usuario fue desactivado y no puedo entrar a intranet,Credenciales
+Necesito acceso de administrador al módulo de ventas,Credenciales
+La aplicación web de ventas no carga correctamente en Chrome,Bug de Software
+Solicito creación de nuevo usuario en sistema de inventario para empleado nuevo,Credenciales
+La integración entre ventas y el sistema externo falla al sincronizar,Bug de Software
+Mi usuario fue desactivado y no puedo entrar a intranet,Credenciales
+El dashboard de producción no actualiza los datos en tiempo real,Bug de Software
+Mi usuario fue desactivado y no puedo entrar a sistema de nómina,Credenciales
+El enlace de fibra óptica con la sede Santa Cruz está intermitente,Infraestructura
+Hay registros duplicados en la tabla clientes que afectan los reportes,Base de Datos
+El servidor DC01 no responde a peticiones de red desde las 07:15,Infraestructura
+El formulario de inventario no valida correctamente el campo de RUT,Bug de Software
+Necesito acceso de administrador al módulo de reportes,Credenciales
+La búsqueda avanzada del módulo producción no retorna resultados correctos,Bug de Software
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+El motor MySQL tiene problemas de rendimiento severos desde las 08:00,Base de Datos
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+"Hay caída general de red en la sede La Paz, todos sin conectividad",Infraestructura
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+Necesito resetear el acceso del usuario tfigueroa en ERP,Credenciales
+No recuerdo el PIN de acceso al sistema de nómina,Credenciales
+La aplicación de ventas lanza error 500 al intentar guardar registros,Bug de Software
+El formulario de nómina no valida correctamente el campo de RUT,Bug de Software
+El motor MongoDB tiene problemas de rendimiento severos desde las 14:00,Base de Datos
+Necesito exportar datos históricos de pedidos al sistema de reportes,Base de Datos
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+La base de datos retorna error de deadlock en producción en tabla pedidos,Base de Datos
+El cálculo de compras es erróneo cuando hay más de 10 decimales,Bug de Software
+Hay registros duplicados en la tabla empleados que afectan los reportes,Base de Datos
+El módulo de reportes genera datos incorrectos en el PDF de facturación,Bug de Software
+La pantalla de inventario muestra montos incorrectos en los totales,Bug de Software
+La aplicación web de ventas no carga correctamente en Chrome,Bug de Software
+La búsqueda avanzada del módulo reportes no retorna resultados correctos,Bug de Software
+La base de datos retorna error de deadlock en producción en tabla empleados,Base de Datos
+El motor MongoDB tiene problemas de rendimiento severos desde las 16:45,Base de Datos
+Error de autenticación al intentar ingresar con mi cuenta a sistema de inventario,Credenciales
+El certificado SSL del servidor WEB01 venció y da error en browsers,Infraestructura
+El índice de la tabla empleados está fragmentado y causa lentitud general,Base de Datos
+Falló la replicación entre el servidor primario y secundario de MySQL,Base de Datos
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+Falló la replicación entre el servidor primario y secundario de MySQL,Base de Datos
+La app móvil se congela al sincronizar datos del módulo facturación,Bug de Software
+La pantalla de facturación muestra montos incorrectos en los totales,Bug de Software
+Solicito restablecimiento urgente de contraseña para el usuario tfigueroa,Credenciales
+El servicio de correo corporativo no está disponible para 7 usuarios,Infraestructura
+El UPS del servidor APP01 reporta batería en nivel crítico,Infraestructura
+El UPS del servidor DC01 reporta batería en nivel crítico,Infraestructura
+El servicio de correo corporativo no está disponible para 3 usuarios,Infraestructura
+La aplicación se cierra inesperadamente al abrir archivos en contabilidad,Bug de Software
+Necesito resetear el acceso del usuario tfigueroa en intranet,Credenciales
+Necesito resetear el acceso del usuario agutierrez en CRM,Credenciales
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+Error de integridad referencial al insertar en tabla pedidos,Base de Datos
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+El procedimiento almacenado sp_actualizar_stock retorna resultados incorrectos,Base de Datos
+La migración de datos a PostgreSQL falló y necesitamos rollback urgente,Base de Datos
+No tengo acceso al sistema de nómina con mis credenciales actuales,Credenciales
+El servidor de monitoreo Nagios perdió conectividad con 7 hosts,Infraestructura
+El servidor de archivos FILE-SRV no es accesible desde la red interna,Infraestructura
+Necesito exportar datos históricos de pedidos al sistema de reportes,Base de Datos
+La búsqueda avanzada del módulo facturación no retorna resultados correctos,Bug de Software
+El certificado SSL del servidor FILE-SRV venció y da error en browsers,Infraestructura
+El módulo de reportes genera datos incorrectos en el PDF de producción,Bug de Software
+"No puedo iniciar sesión en el sistema ERP, mi contraseña no funciona",Credenciales
+El certificado SSL del servidor DC01 venció y da error en browsers,Infraestructura
+"La base de datos PostgreSQL no acepta nuevas conexiones, límite alcanzado",Base de Datos
+Error ORA-00942 table or view does not exist al consultar pedidos,Base de Datos
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+El log de transacciones de MongoDB llenó el disco y detuvo el servicio,Base de Datos
+El servidor FILE-SRV no responde a peticiones de red desde las 14:00,Infraestructura
+Error de integridad referencial al insertar en tabla facturas,Base de Datos
+El servidor de base de datos Oracle está caído y no responde,Base de Datos
+Solicito restablecimiento urgente de contraseña para el usuario mrodriguez,Credenciales
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+Error de integridad referencial al insertar en tabla facturas,Base de Datos
+El módulo de importación CSV de inventario falla con archivos grandes,Bug de Software
+El índice de la tabla clientes está fragmentado y causa lentitud general,Base de Datos
+El reporte mensual de compras no incluye registros del último día,Bug de Software
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+Falló la replicación entre el servidor primario y secundario de MongoDB,Base de Datos
+El servidor de archivos WEB01 no es accesible desde la red interna,Infraestructura
+Olvidé mi contraseña del ERP y necesito restablecerla,Credenciales
+El rack del datacenter del piso 3 tiene temperatura elevada,Infraestructura
+El certificado SSL del servidor DC01 venció y da error en browsers,Infraestructura
+El motor Oracle tiene problemas de rendimiento severos desde las 09:30,Base de Datos
+El motor PostgreSQL tiene problemas de rendimiento severos desde las 09:30,Base de Datos
+No tengo acceso al plataforma académica con mis credenciales actuales,Credenciales
+El sistema de nómina duplica registros al actualizar datos,Bug de Software
+El dashboard de RRHH no actualiza los datos en tiempo real,Bug de Software
+Me aparece error de usuario inactivo al intentar entrar al sistema de nómina,Credenciales
+Me aparece error de usuario inactivo al intentar entrar al CRM,Credenciales
+El job programado de mantenimiento de MongoDB falló esta madrugada,Base de Datos
+La integración entre producción y el sistema externo falla al sincronizar,Bug de Software
+El servidor de base de datos PostgreSQL está caído y no responde,Base de Datos
+El UPS del servidor DB-PROD reporta batería en nivel crítico,Infraestructura
+Hay registros duplicados en la tabla empleados que afectan los reportes,Base de Datos
+El módulo nómina no respeta los permisos de rol configurados,Bug de Software
+Espacio en disco del servidor SQL Server llegó al 95% de capacidad,Base de Datos
+Error de conexión al servidor MySQL desde la aplicación de producción,Base de Datos
+La pantalla de inventario muestra montos incorrectos en los totales,Bug de Software
+El UPS del servidor DC01 reporta batería en nivel crítico,Infraestructura
+Error ORA-00942 table or view does not exist al consultar facturas,Base de Datos
+La aplicación de producción lanza error 500 al intentar guardar registros,Bug de Software
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+El cálculo de reportes es erróneo cuando hay más de 5 decimales,Bug de Software
+El módulo compras no respeta los permisos de rol configurados,Bug de Software
+La base de datos retorna error de deadlock en producción en tabla pedidos,Base de Datos
+El servidor DC01 no responde a peticiones de red desde las 09:30,Infraestructura
+Error de conexión al servidor SQL Server desde la aplicación de inventario,Base de Datos
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+No tengo acceso al CRM con mis credenciales actuales,Credenciales
+Solicito creación de nuevo usuario en intranet para empleado nuevo,Credenciales
+La conexión pool de MongoDB se agota en horas pico con muchos usuarios,Base de Datos
+El balanceador de carga no distribuye tráfico correctamente al servidor,Infraestructura
+La búsqueda avanzada del módulo ventas no retorna resultados correctos,Bug de Software
+El botón de exportar a Excel del módulo producción no funciona,Bug de Software
+Los backups automáticos del servidor FILE-SRV fallaron esta noche,Infraestructura
+Necesito acceso de administrador al módulo de compras,Credenciales
+El sistema de facturación duplica registros al actualizar datos,Bug de Software
+El enlace de fibra óptica con la sede Cochabamba está intermitente,Infraestructura
+Necesito extender permisos del usuario agutierrez al módulo de producción,Credenciales
+Necesito resetear el acceso del usuario agutierrez en plataforma académica,Credenciales
+No recuerdo el PIN de acceso al sistema de inventario,Credenciales
+El sistema portal corporativo me pide cambiar contraseña pero no me deja entrar,Credenciales
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+El servidor web FILE-SRV reporta errores 503 de indisponibilidad,Infraestructura
+Error de autenticación al intentar ingresar con mi cuenta a CRM,Credenciales
+El sistema de SSO me redirige en bucle sin dejarme entrar,Credenciales
+El cálculo de facturación es erróneo cuando hay más de 6 decimales,Bug de Software
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+El procedimiento almacenado sp_actualizar_stock retorna resultados incorrectos,Base de Datos
+El botón de exportar a Excel del módulo facturación no funciona,Bug de Software
+El enlace de fibra óptica con la sede Cochabamba está intermitente,Infraestructura
+Falló la replicación entre el servidor primario y secundario de Oracle,Base de Datos
+El procedimiento almacenado sp_calcular_impuesto retorna resultados incorrectos,Base de Datos
+Necesito extender permisos del usuario cmolina al módulo de compras,Credenciales
+La aplicación se cierra inesperadamente al abrir archivos en reportes,Bug de Software
+Las notificaciones del módulo producción no llegan a los usuarios correctos,Bug de Software
+El módulo de reportes genera datos incorrectos en el PDF de reportes,Bug de Software
+Falló la replicación entre el servidor primario y secundario de SQL Server,Base de Datos
+El módulo de importación CSV de contabilidad falla con archivos grandes,Bug de Software
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+El formulario de inventario no valida correctamente el campo de RUT,Bug de Software
+El enlace de fibra óptica con la sede Cochabamba está intermitente,Infraestructura
+"Hay caída general de red en la sede Cochabamba, todos sin conectividad",Infraestructura
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+El servicio de correo corporativo no está disponible para 7 usuarios,Infraestructura
+Espacio en disco del servidor Oracle llegó al 95% de capacidad,Base de Datos
+Mi sesión expira constantemente en sistema de nómina aunque estoy activo,Credenciales
+El log de transacciones de MySQL llenó el disco y detuvo el servicio,Base de Datos
+"No puedo cambiar mi contraseña, el sistema contable dice que no cumple requisitos",Credenciales
+El firewall está bloqueando tráfico legítimo del módulo de producción,Infraestructura
+El módulo de reportes genera datos incorrectos en el PDF de compras,Bug de Software
+El certificado digital de mi usuario venció y no puedo firmar documentos,Credenciales
+El servidor de monitoreo Nagios perdió conectividad con 3 hosts,Infraestructura
+No tengo acceso al sistema de nómina con mis credenciales actuales,Credenciales
+El switch del piso 4 está caído y no hay conectividad en el área,Infraestructura
+El módulo de importación CSV de ventas falla con archivos grandes,Bug de Software
+El certificado SSL del servidor MAIL-SRV venció y da error en browsers,Infraestructura
+El reporte mensual de producción no incluye registros del último día,Bug de Software
+No recuerdo el PIN de acceso al ERP,Credenciales
+Mi sesión expira constantemente en plataforma académica aunque estoy activo,Credenciales
+El servidor de DNS no resuelve nombres internos correctamente,Infraestructura
+El sistema de RRHH duplica registros al actualizar datos,Bug de Software
+El enlace de fibra óptica con la sede La Paz está intermitente,Infraestructura
+El servidor web DB-PROD reporta errores 503 de indisponibilidad,Infraestructura
+El servidor de archivos WEB01 no es accesible desde la red interna,Infraestructura
+El servidor de base de datos MongoDB está caído y no responde,Base de Datos
+Espacio en disco del servidor MySQL llegó al 95% de capacidad,Base de Datos
+El cálculo de reportes es erróneo cuando hay más de 5 decimales,Bug de Software
+El UPS del servidor DB-PROD reporta batería en nivel crítico,Infraestructura
+La migración de datos a PostgreSQL falló y necesitamos rollback urgente,Base de Datos
+La búsqueda avanzada del módulo RRHH no retorna resultados correctos,Bug de Software
+El formulario de facturación no valida correctamente el campo de RUT,Bug de Software
+Error de conexión al servidor Oracle desde la aplicación de contabilidad,Base de Datos
+El servidor de base de datos Oracle está caído y no responde,Base de Datos
+"No puedo iniciar sesión en el sistema portal corporativo, mi contraseña no funciona",Credenciales
+Mi cuenta fue bloqueada después de 7 intentos fallidos en sistema contable,Credenciales
+Hay registros duplicados en la tabla facturas que afectan los reportes,Base de Datos
+"No puedo cambiar mi contraseña, el sistema de inventario dice que no cumple requisitos",Credenciales
+Mi cuenta fue bloqueada después de 3 intentos fallidos en sistema de inventario,Credenciales
+Las notificaciones del módulo compras no llegan a los usuarios correctos,Bug de Software
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+Mi sesión expira constantemente en portal corporativo aunque estoy activo,Credenciales
+Mi sesión expira constantemente en portal corporativo aunque estoy activo,Credenciales
+El sistema de facturación duplica registros al actualizar datos,Bug de Software
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+Espacio en disco del servidor MySQL llegó al 95% de capacidad,Base de Datos
+El sistema de facturación duplica registros al actualizar datos,Bug de Software
+Solicito restablecimiento urgente de contraseña para el usuario agutierrez,Credenciales
+El botón de exportar a Excel del módulo facturación no funciona,Bug de Software
+La pantalla de producción muestra montos incorrectos en los totales,Bug de Software
+No puedo ingresar al portal VPN con mis credenciales corporativas,Credenciales
+El módulo de importación CSV de RRHH falla con archivos grandes,Bug de Software
+Solicito restablecimiento urgente de contraseña para el usuario tfigueroa,Credenciales
+Error ORA-00942 table or view does not exist al consultar transacciones,Base de Datos
+El job programado de mantenimiento de SQL Server falló esta madrugada,Base de Datos
+El cálculo de RRHH es erróneo cuando hay más de 9 decimales,Bug de Software
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+"Hay caída general de red en la sede Cochabamba, todos sin conectividad",Infraestructura
+El switch del piso 1 está caído y no hay conectividad en el área,Infraestructura
+La base de datos retorna error de deadlock en producción en tabla pedidos,Base de Datos
+"El almacenamiento NAS está sin espacio disponible, disco al 100%",Infraestructura
+Error de autenticación al intentar ingresar con mi cuenta a sistema de inventario,Credenciales
+El certificado SSL del servidor MAIL-SRV venció y da error en browsers,Infraestructura
+El botón de exportar a Excel del módulo inventario no funciona,Bug de Software
+Hay registros duplicados en la tabla usuarios que afectan los reportes,Base de Datos
+La app móvil se congela al sincronizar datos del módulo compras,Bug de Software
+Necesito exportar datos históricos de clientes al sistema de reportes,Base de Datos
+El procedimiento almacenado sp_calcular_impuesto retorna resultados incorrectos,Base de Datos
+La VPN no permite conexión desde trabajadores remotos desde hoy,Infraestructura
+El router principal necesita reinicio urgente por fallo de routing,Infraestructura
+La aplicación se cierra inesperadamente al abrir archivos en ventas,Bug de Software
+El workflow de aprobación en facturación se queda en estado pendiente,Bug de Software
+Los backups automáticos del servidor DC01 fallaron esta noche,Infraestructura
+"No puedo cambiar mi contraseña, el sistema contable dice que no cumple requisitos",Credenciales
+El dashboard de inventario no actualiza los datos en tiempo real,Bug de Software
+El certificado SSL del servidor APP01 venció y da error en browsers,Infraestructura
+Solicito creación de nuevo usuario en intranet para empleado nuevo,Credenciales
+El servicio DHCP dejó de asignar IPs a equipos nuevos en la red,Infraestructura
+Necesito resetear el acceso del usuario agutierrez en sistema de inventario,Credenciales
+El sistema de contabilidad arroja error al calcular totales con descuento,Bug de Software
+El token de autenticación de dos factores no llega a mi correo,Credenciales
+La integración entre compras y el sistema externo falla al sincronizar,Bug de Software
