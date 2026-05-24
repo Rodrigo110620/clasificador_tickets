@@ -1729,6 +1729,11 @@
       "categoria": "Credenciales",
       "fecha": "23/05/2026 22:51",
       "preview": "pued inici sesion"
+    },
+    "3f5bd254a09fdccb246fc3330fa255b5": {
+      "categoria": "Credenciales",
+      "fecha": "24/05/2026 00:28",
+      "preview": "pued conect wifi oficin aparec contraseñ incorrect"
     }
   },
   "categorias_vistas": [
