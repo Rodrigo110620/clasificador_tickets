@@ -1,11 +1,15 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
 .idea/
-*.pkl
 .DS_Store
+.cursor/
 
+# Estado local al clasificar tickets (cada usuario genera el suyo)
+models/memoria.json
+
+# Modelos entrenados: generar con python train_model.py
 models/*
 !models/.gitkeep
-
