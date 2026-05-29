@@ -62,24 +62,33 @@ def guardar_para_entrenamiento(ticket: str, categoria: str) -> bool:
     return agregado
 
 
-def procesar_clasificacion(ticket: str, datos_modelo: dict, *, silencioso: bool = False) -> bool:
+def procesar_clasificacion(ticket: str, datos_modelo: dict, *, silencioso: bool = False, logs: list | None = None) -> bool:
     ticket = ticket.strip()
+    if logs is None:
+        logs = []
+
+    logs.append("Inicio de validación del ticket.")
     if not ticket:
         if not silencioso:
             st.warning("Por favor ingresa la descripción del ticket antes de clasificar.")
+        logs.append("No se ingresó ningún ticket.")
         return False
 
     detalle = preprocesar_con_detalle(ticket)
+    logs.append("Preprocesamiento completado: limpieza y stemming.")
     valido, motivo = es_texto_valido(ticket, detalle)
     if not valido:
         st.session_state.ultimo_resultado = None
+        logs.append(f"Ticket inválido: {motivo}")
         if not silencioso:
             st.error(f"**Ticket rechazado:** {motivo}")
+        st.session_state.clasificar_logs = logs
         return False
 
     modelo = datos_modelo["modelo"]
     nombre = datos_modelo.get("nombre", "Modelo")
 
+    logs.append("Clasificando ticket con el modelo.")
     with st.spinner("Analizando el ticket..."):
         resultado = clasificar_ticket(modelo, ticket, detalle)
         resultado["ticket"] = ticket
@@ -89,6 +98,7 @@ def procesar_clasificacion(ticket: str, datos_modelo: dict, *, silencioso: bool 
     agregar_ticket(ticket, resultado["categoria_modelo"])
     guardar_en_memoria(resultado["texto_procesado"], resultado["categoria_modelo"])
 
+    resultado["logs"] = logs
     st.session_state.ultimo_resultado = resultado
     agregar_al_historial(ticket, resultado)
     return True

@@ -5,17 +5,15 @@ import streamlit as st
 from config.constants import UMBRAL_VISUAL_PROB, icono_categoria
 
 
-def _estilo_celda_matriz(valor: int, vmax: int) -> str:
-    if vmax <= 0:
+def _estilo_celda_matriz(valor: int, fila_total: int) -> str:
+    if fila_total <= 0:
         ratio = 0.0
     else:
-        ratio = min(valor / vmax, 1.0)
-    fondo_r = int(235 - ratio * (235 - 29))
-    fondo_g = int(248 - ratio * (248 - 78))
-    fondo_b = int(255 - ratio * (255 - 216))
+        ratio = min(valor / fila_total, 1.0)
+    hue = int(120 * ratio)
     texto = "#ffffff" if ratio > 0.55 else "#1e293b"
     return (
-        f"background:#{fondo_r:02x}{fondo_g:02x}{fondo_b:02x} !important;"
+        f"background:hsl({hue}, 80%, 65%) !important;"
         f"color:{texto} !important;"
     )
 
@@ -96,19 +94,38 @@ def render_matriz_confusion_html(
     etiquetas: list,
     nombre_modelo: str,
 ):
-    vmax = max((max(fila) for fila in matriz), default=1)
+    fila_totales = [sum(fila) for fila in matriz]
+    total = sum(fila_totales)
+    correctos = sum(matriz[i][i] for i in range(len(etiquetas)))
+    accuracy_global = correctos / total if total else 0.0
+
     encabezado = "".join(
         f"<th>{html.escape(lbl)}</th>" for lbl in etiquetas
     )
     cuerpo = []
+    recall_rows = []
     for i, real in enumerate(etiquetas):
-        celdas = "".join(
-            f"<td style='{_estilo_celda_matriz(matriz[i][j], vmax)}'>"
-            f"{matriz[i][j]}</td>"
-            for j in range(len(etiquetas))
-        )
+        fila_total = fila_totales[i]
+        celdas = ""
+        for j, pred in enumerate(etiquetas):
+            valor = matriz[i][j]
+            pct = valor / fila_total if fila_total else 0.0
+            pct_txt = _formatear_pct(pct)
+            title = (
+                f"Real: {real} → Pred: {pred} — {valor} ({pct_txt} de esta clase)"
+            )
+            celdas += (
+                f"<td style='{_estilo_celda_matriz(valor, fila_total)}' title='{html.escape(title)}'>"
+                f"{valor}<br><span class='cell-pct'>{html.escape(pct_txt)}</span></td>"
+            )
         cuerpo.append(
             f"<tr><th class='cm-real'>{html.escape(real)}</th>{celdas}</tr>"
+        )
+        recall = matriz[i][i] / fila_total if fila_total else 0.0
+        recall_rows.append(
+            f"<tr><td>{html.escape(real)}</td>"
+            f"<td>{_formatear_pct(recall)}</td>"
+            f"<td>{fila_total}</td></tr>"
         )
 
     st.markdown(
@@ -130,7 +147,25 @@ def render_matriz_confusion_html(
             <div class="matriz-leyenda">
                 <span>Bajo</span>
                 <div class="matriz-leyenda-bar"></div>
-                <span>Alto ({vmax})</span>
+                <span>Alto (100%)</span>
+            </div>
+            <div class="matriz-summary">
+                <div class="matriz-summary-card">
+                    <div class="matriz-summary-label">Accuracy global</div>
+                    <div class="matriz-summary-value">{accuracy_global * 100:.1f}%</div>
+                    <div class="matriz-summary-hint">Correctas / total: {correctos} / {total}</div>
+                </div>
+                <div class="matriz-summary-card matriz-summary-recall">
+                    <div class="matriz-summary-label">Recall por categoría</div>
+                    <table class="matriz-recall-table">
+                        <thead>
+                            <tr><th>Categoría</th><th>Recall</th><th>Total real</th></tr>
+                        </thead>
+                        <tbody>
+                            {"".join(recall_rows)}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         """,

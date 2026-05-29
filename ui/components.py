@@ -1,9 +1,10 @@
 import html
+import time
 from datetime import datetime
 
 import streamlit as st
 
-from config.constants import PRIORIDAD, icono_categoria
+from config.constants import PRIORIDAD, SOLUCIONES, icono_categoria
 from services.classifier import guardar_para_entrenamiento, procesar_clasificacion
 from services.dataset import contar_por_categoria, ejemplos_por_categoria
 from services.metrics import evaluar_en_dataset
@@ -86,6 +87,9 @@ def render_resultado(resultado: dict, nombre_modelo: str):
         unsafe_allow_html=True,
     )
 
+    if resultado.get("latencia_ms") is not None:
+        st.markdown(f"**Latencia:** {resultado['latencia_ms']} ms")
+
     if desconocido:
         st.markdown(
             f"""
@@ -97,10 +101,21 @@ def render_resultado(resultado: dict, nombre_modelo: str):
             unsafe_allow_html=True,
         )
 
+    # Mostrar posibles soluciones
+    solucion = SOLUCIONES.get(cat, SOLUCIONES.get("Otros", ""))
+    if solucion:
+        st.markdown("**💡 Posibles respuestas / soluciones**")
+        st.info(solucion)
     grafico_probabilidades_html(resultado["probabilidades"], cat)
 
     with st.expander("🔎 Análisis del ticket", expanded=False):
         _contenido_analisis(resultado)
+
+    logs = resultado.get("logs") or st.session_state.get("clasificar_logs") or []
+    if logs:
+        with st.expander("🧾 Logs de clasificación", expanded=False):
+            for paso in logs:
+                st.markdown(f"- {html.escape(paso)}")
 
     render_admin_etiquetado(resultado)
 
@@ -135,7 +150,7 @@ def render_admin_etiquetado(resultado: dict):
     )
     cat_final = nueva_categoria.strip() if nueva_categoria.strip() else categoria_correcta
 
-    if st.button("💾 Etiquetar y agregar al entrenamiento", type="primary"):
+    if st.button("💾 Etiquetar y agregar al entrenamiento", type="primary", key=f"admin_save_{resultado.get('hash_md5', 'x')}"):
         guardar_para_entrenamiento(resultado["ticket"], cat_final)
         st.success(f"Ticket guardado como **{cat_final}**. Usa «Reentrenar modelo» para incorporarlo.")
         st.info(
@@ -281,6 +296,17 @@ def _guardar_ticket_input():
     st.session_state.ticket_input = st.session_state.ticket_input
 
 
+def _registrar_inicio_clasificacion():
+    st.session_state.clasificar_inicio_ts = time.perf_counter()
+    st.session_state.clasificar_logs = [
+        "Inicio de la clasificación manual.",
+        "Validando contenido del ticket...",
+        "Preparando preprocesamiento y stemming...",
+        "Enviando ticket al modelo para clasificar...",
+    ]
+    st.session_state.clasificar_latency_ms = None
+
+
 def seccion_input(
     mostrar_titulo: bool = True,
     mostrar_boton: bool = True,
@@ -315,7 +341,11 @@ def seccion_input(
 
     clasificar = False
     if mostrar_boton:
-        clasificar = st.button("✈️ Clasificar Ticket", type="primary")
+        clasificar = st.button(
+            "✈️ Clasificar Ticket",
+            type="primary",
+            on_click=_registrar_inicio_clasificacion,
+        )
     return ticket, clasificar
 
 
@@ -374,7 +404,15 @@ def vista_clasificador(datos_modelo: dict, num_input: int = 1, num_resultado: in
     if ejemplo:
         procesar_clasificacion(ejemplo, datos_modelo)
     elif clasificar:
-        procesar_clasificacion(ticket, datos_modelo)
+        start = st.session_state.get("clasificar_inicio_ts") or time.perf_counter()
+        logs = st.session_state.get("clasificar_logs", [])
+        success = procesar_clasificacion(ticket, datos_modelo, logs=logs)
+        latency_ms = int((time.perf_counter() - start) * 1000)
+        st.session_state.clasificar_latency_ms = latency_ms
+        st.session_state.clasificar_logs = logs
+        if success and st.session_state.get("ultimo_resultado"):
+            st.session_state.ultimo_resultado["latencia_ms"] = latency_ms
+            st.session_state.ultimo_resultado["logs"] = logs
 
     st.markdown('<div class="clasif-divider"></div>', unsafe_allow_html=True)
     section_title(num_resultado, "Resultado de la clasificación")

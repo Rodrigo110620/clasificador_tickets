@@ -15,22 +15,55 @@ def _keys_nav():
 def _boton_reentrenar():
     """Siempre visible en la barra lateral."""
     st.markdown("---")
-    if st.button(
-        "🔄 Reentrenar modelo",
-        type="primary",
-        use_container_width=True,
-        help="Entrena de nuevo con todos los tickets de dataset/tickets.csv",
-    ):
-        with st.spinner("Entrenando…"):
-            resultado = ejecutar_reentrenamiento()
-        if resultado.get("ok"):
-            st.success(resultado["mensaje"])
+
+    if "reentrenar_confirmar" not in st.session_state:
+        st.session_state.reentrenar_confirmar = False
+    if "reentrenar_resultado" not in st.session_state:
+        st.session_state.reentrenar_resultado = None
+    if "reentrenar_completado" not in st.session_state:
+        st.session_state.reentrenar_completado = False
+
+    if not st.session_state.reentrenar_confirmar:
+        if st.button(
+            "🔄 Reentrenar modelo",
+            type="primary",
+            use_container_width=True,
+            help="Entrena de nuevo con todos los tickets de dataset/tickets.csv",
+            key="boton_reentrenar_sidebar",
+        ):
+            st.session_state.reentrenar_confirmar = True
+    else:
+        st.info("¿Deseas reentrenar el modelo ahora?")
+        confirm_col, cancel_col = st.columns([1, 1])
+        if confirm_col.button("Sí, reentrenar", key="confirmar_reentrenar"):
+            with st.spinner("Reentrenando el modelo…"):
+                resultado = ejecutar_reentrenamiento()
+            st.session_state.reentrenar_confirmar = False
+            st.session_state.reentrenar_completado = True
+            st.session_state.reentrenar_resultado = resultado
+            st.experimental_rerun()
+
+        if cancel_col.button("No, cancelar", key="cancelar_reentrenar"):
+            st.session_state.reentrenar_confirmar = False
+            st.session_state.reentrenar_resultado = None
+            st.session_state.reentrenar_completado = False
+
+    if st.session_state.reentrenar_completado and st.session_state.reentrenar_resultado:
+        resultado = st.session_state.reentrenar_resultado
+        with st.expander("Consola de reentrenamiento", expanded=True):
+            st.markdown(
+                f"**Latencia:** {resultado.get('latencia_ms', 0)} ms  \n"
+                f"**F1-score:** {resultado.get('f1', 0):.2%}  \n"
+                f"**Modelo activo:** {resultado.get('mejor_modelo', '—')}"
+            )
             omitidas = resultado.get("categorias_omitidas") or []
             if omitidas:
-                st.warning(
-                    f"Omitidas (< {MIN_EJEMPLOS_POR_CATEGORIA} ej.): {', '.join(omitidas)}"
-                )
-            st.rerun()
+                st.markdown(f"**Categorías omitidas:** {', '.join(omitidas)}")
+            else:
+                st.markdown("**Categorías omitidas:** ninguna")
+
+        if resultado.get("ok"):
+            st.success(resultado.get("mensaje", "Reentrenamiento completado."))
         else:
             st.error(resultado.get("mensaje", "No se pudo entrenar"))
 
