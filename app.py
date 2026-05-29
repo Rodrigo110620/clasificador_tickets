@@ -13,6 +13,8 @@ from ui.pages.historial import pagina_historial
 from ui.pages.info import pagina_info
 from ui.pages.inicio import pagina_inicio
 from ui.pages.metricas import pagina_metricas
+from ui.pages.batch_entrenamiento import pagina_batch_entrenamiento
+from ui.pages.batch_inferencia import pagina_batch_inferencia
 from ui.sidebar import render_sidebar
 from ui.styles import inject_css
 
@@ -45,6 +47,10 @@ def main():
         pagina_historial(metricas, datos_modelo)
     elif pagina == "metricas":
         pagina_metricas(datos_modelo, metricas)
+    elif pagina == "batch_inferencia":
+        pagina_batch_inferencia(datos_modelo, metricas)
+    elif pagina == "batch_entrenamiento":
+        pagina_batch_entrenamiento(datos_modelo, metricas)
     elif pagina == "comparacion":
         pagina_comparacion(metricas, datos_modelo)
     elif pagina == "info":

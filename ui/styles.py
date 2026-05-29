@@ -598,6 +598,62 @@ div[data-testid="stTextArea"]:focus-within {
     border-radius: 5px;
     background: linear-gradient(90deg, #dbeafe, #1d4ed8);
 }
+.matriz-summary {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecf3;
+}
+.matriz-summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.95rem 1rem;
+}
+.matriz-summary-card .matriz-summary-label {
+    display: block;
+    font-size: 0.82rem;
+    color: #475569 !important;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+.matriz-summary-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a !important;
+    margin-bottom: 0.35rem;
+}
+.matriz-summary-hint {
+    font-size: 0.82rem;
+    color: #64748b !important;
+}
+.matriz-recall-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.matriz-recall-table th,
+.matriz-recall-table td {
+    padding: 0.45rem 0.55rem;
+    text-align: left;
+    border: 1px solid #e9ecf3;
+}
+.matriz-recall-table th {
+    background: #eef2ff;
+    color: #1e293b !important;
+    font-weight: 700;
+}
+.matriz-recall-table tbody tr:nth-child(even) td {
+    background: #f8fafc !important;
+}
+.cell-pct {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(30, 41, 59, 0.8) !important;
+}
 
 /* ── NLP TEXT BOX ────────────────────────────────────────── */
 [data-testid="stAppViewContainer"] .main .nlp-texto-box,

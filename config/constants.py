@@ -47,6 +47,8 @@ MENU_OPCIONES = [
     ("clasificar", "🎫 Clasificar Ticket"),
     ("historial", "📋 Historial"),
     ("metricas", "📊 Métricas"),
+    ("batch_inferencia", "🚀 Batch Inferencia"),
+    ("batch_entrenamiento", "🧪 Batch Entrenamiento"),
     ("comparacion", "⚖️ Comparación de Modelos"),
     ("info", "ℹ️ Información del Proyecto"),
 ]
@@ -77,4 +79,99 @@ PRIORIDAD = {
     "Base de Datos": ("Media", "badge-media"),
     "Bug de Software": ("Media", "badge-media"),
     "Otros": ("Media", "badge-media"),
+}
+
+# Posibles soluciones por categoría
+SOLUCIONES = {
+    "Credenciales": (
+        "• Revisar si la cuenta está bloqueada en Active Directory\n"
+        "• Restablecer contraseña en AD\n"
+        "• Verificar permisos de acceso a la aplicación\n"
+        "• Limpiar caché de credenciales del navegador/aplicación\n"
+        "• Confirmar que el usuario está en los grupos correctos"
+    ),
+    "Base de Datos": (
+        "• Verificar estado de conexión a la BD (ping, telnet)\n"
+        "• Revisar logs de errores (ORA-xxxx, deadlock, timeout)\n"
+        "• Comprobar espacio disponible en disco\n"
+        "• Validar credenciales de acceso a BD\n"
+        "• Reiniciar servicio de BD si es necesario"
+    ),
+    "Infraestructura": (
+        "• Revisar estado de servidores (CPU, memoria, disco)\n"
+        "• Verificar conectividad de red\n"
+        "• Comprobar puertos abiertos y firewalls\n"
+        "• Revisar registros de eventos del sistema\n"
+        "• Reiniciar servicios críticos"
+    ),
+    "Bug de Software": (
+        "• Verificar versión actual de la aplicación\n"
+        "• Revisar logs de la aplicación\n"
+        "• Buscar actualizaciones/parches disponibles\n"
+        "• Limpiar caché y datos temporales\n"
+        "• Reportar a desarrolladores con detalles del error"
+    ),
+    "Telefonía": (
+        "• Verificar que el equipo de telefonía está encendido\n"
+        "• Comprobar conexión de red del dispositivo\n"
+        "• Reiniciar centralita o adaptador telefónico\n"
+        "• Revisar configuración de extensión\n"
+        "• Contactar con proveedor de telefonía si persiste"
+    ),
+    "Excel": (
+        "• Verificar que el archivo no está corrompido\n"
+        "• Guardar como .xlsx (formato actual)\n"
+        "• Comprobar límites de celdas/filas (máx. 1M)\n"
+        "• Limpiar formato excesivo o referencias circulares\n"
+        "• Actualizaciones de Microsoft Office"
+    ),
+    "Hardware": (
+        "• Verificar conexiones físicas (cables, puertos)\n"
+        "• Revisar estado en Administrador de dispositivos\n"
+        "• Ejecutar diagnósticos de hardware\n"
+        "• Actualizar drivers del dispositivo\n"
+        "• Reemplazar hardware si no funciona"
+    ),
+    "Correo": (
+        "• Verificar credenciales de acceso al buzón\n"
+        "• Revisar almacenamiento disponible\n"
+        "• Comprobar configuración de sincronización\n"
+        "• Limpiar caché de correo\n"
+        "• Contactar a equipo de correo para análisis de logs"
+    ),
+    "VPN": (
+        "• Verificar conexión a internet\n"
+        "• Revisar estado del cliente VPN\n"
+        "• Comprobar certificados de VPN (no expirados)\n"
+        "• Reiniciar cliente VPN\n"
+        "• Validar permisos de acceso VPN en servidor"
+    ),
+    "Impresoras": (
+        "• Verificar que la impresora está encendida y conectada\n"
+        "• Revisar cola de impresión\n"
+        "• Limpiar papel atascado\n"
+        "• Instalar/actualizar drivers de impresora\n"
+        "• Reiniciar servicio de spooler"
+    ),
+    "Sistema Operativo": (
+        "• Verificar actualizaciones del SO pendientes\n"
+        "• Revisar espacio en disco disponible\n"
+        "• Ejecutar escaneo de malware/antivirus\n"
+        "• Comprobar logs del Visor de eventos\n"
+        "• Realizar reinicio del sistema"
+    ),
+    "Redes IP": (
+        "• Verificar configuración de IP (ipconfig/ifconfig)\n"
+        "• Comprobar conectividad con ping/tracert\n"
+        "• Revisar puerta de enlace y DNS\n"
+        "• Renovar DHCP o asignar IP estática\n"
+        "• Contactar equipo de redes"
+    ),
+    "Otros": (
+        "• Revisar detalles específicos del problema\n"
+        "• Consultar documentación disponible\n"
+        "• Contactar a equipo especializado\n"
+        "• Proporcionar logs o capturas de pantalla\n"
+        "• Escalación a nivel superior si es necesario"
+    ),
 }
