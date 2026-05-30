@@ -48,6 +48,23 @@ _STEMS_SOPORTE_IT = {
     "antivirus", "ticket", "soport", "tecnic", "configur", "permis", "rol",
     "servidor", "host", "puert", "protocol", "ssl", "certific", "copi",
     "escan", "toner", "papel", "driver", "control", "version", "patch",
+    # Periféricos y hardware frecuentes en tickets
+    "mous", "comput", "tecl", "monitor", "pantall", "disc", "memori",
+    "proces", "notebook", "laptop", "tablet", "celul", "telefon",
+    "cabl", "puert", "usb", "hdmi", "bateri", "cargador", "ventil",
+    "fuent", "rack", "ups", "bios", "raid", "ssd", "gpu", "cpu",
+    "impresor", "escaner", "camer", "microfon", "auricular", "headset",
+    "docking", "adaptador", "conector", "encend", "reinici", "apag",
+    "detect", "reconoc", "congel",
+    # Acciones IT comunes
+    "instal", "desinstal", "actualiz", "configur", "restaur",
+    "recuper", "migr", "sincroniz", "integr", "despleg", "ejecut",
+    "export", "import", "descarg",
+    # Verbos y sustantivos de acceso/sesión frecuentes en tickets cortos
+    "ingres", "cuent", "conect", "inici", "acced", "entrar", "abrir",
+    "clav", "pass", "login", "sesion", "equip", "disposit", "dat",
+    "prend", "encend", "apag", "reinici", "colgars", "cuelg",
+    "lent", "tarda", "demor", "bloque", "bloqu",
 }
 
 # Temas claramente ajenos a mesa de ayuda IT
@@ -143,26 +160,41 @@ def _stem_en_lexico(stem: str, lexico: set) -> bool:
     )
 
 
+# Umbral mínimo de stems IT sobre el total de stems útiles
+_UMBRAL_IT = 0.40
+
+
 def es_contexto_soporte_tecnico(stems: list) -> tuple[bool, str]:
-    """Rechaza textos que no describen un problema de soporte técnico."""
+    """
+    Rechaza textos que no describen un problema de soporte técnico.
+    Regla: al menos el 40 % de los stems deben pertenecer al léxico IT.
+    """
     if not stems:
         return False, "El texto no contiene términos de soporte técnico."
 
+    total = len(stems)
     soporte = sum(1 for s in stems if _stem_en_lexico(s, _STEMS_SOPORTE_IT))
-    fuera = sum(1 for s in stems if _stem_en_lexico(s, _STEMS_FUERA_TEMA))
+    fuera   = sum(1 for s in stems if _stem_en_lexico(s, _STEMS_FUERA_TEMA))
+    pct_it  = soporte / total
 
+    # Tema claramente ajeno (historia, política, cocina…) sin ningún término IT
     if fuera >= 1 and soporte == 0:
         return (
             False,
             "El texto no corresponde a un ticket de soporte técnico "
             "(parece un tema general, no relacionado con sistemas o TI).",
         )
-    if soporte == 0:
+
+    # Menos del 40 % de términos IT → texto demasiado genérico o fuera de contexto
+    if pct_it < _UMBRAL_IT:
+        pct_str = f"{pct_it:.0%}"
         return (
             False,
-            "Describe un problema técnico concreto (software, red, acceso, "
-            "correo, base de datos, equipos, etc.).",
+            f"Solo el {pct_str} de los términos son de soporte técnico (mínimo 40 %). "
+            "Describe el problema técnico con más detalle: software, red, acceso, "
+            "correo, base de datos, equipos, etc.",
         )
+
     return True, ""
 
 

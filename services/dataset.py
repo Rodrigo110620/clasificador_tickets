@@ -95,3 +95,47 @@ def ejemplos_por_categoria() -> dict[str, str]:
         texto = str(fila["ticket"]).strip()
         ejemplos[categoria] = texto
     return ejemplos
+
+
+def agregar_lote(filas: list[dict]) -> dict:
+    """
+    Agrega múltiples tickets al CSV en una sola operación (eficiente para lotes grandes).
+    Cada elemento de filas: {"ticket": str, "categoria": str}
+    Retorna {"agregados": int, "duplicados": int, "errores": int}
+    """
+    if not filas:
+        return {"agregados": 0, "duplicados": 0, "errores": 0}
+
+    os.makedirs(os.path.dirname(RUTA_DATASET), exist_ok=True)
+    df_actual = cargar_dataset()
+
+    # Construir set de hashes existentes para lookup O(1)
+    if not df_actual.empty:
+        hashes_existentes = set(df_actual["ticket"].astype(str).apply(hash_ticket))
+    else:
+        hashes_existentes = set()
+
+    nuevos, duplicados, errores = [], 0, 0
+
+    for fila in filas:
+        try:
+            texto = str(fila.get("ticket", "")).strip()
+            categoria = str(fila.get("categoria", "")).strip()
+            if not texto or not categoria:
+                errores += 1
+                continue
+            h = hash_ticket(texto)
+            if h in hashes_existentes:
+                duplicados += 1
+                continue
+            hashes_existentes.add(h)
+            nuevos.append({"ticket": texto, "categoria": categoria})
+        except Exception:
+            errores += 1
+
+    if nuevos:
+        df_nuevos = pd.DataFrame(nuevos)
+        df_combined = pd.concat([df_actual, df_nuevos], ignore_index=True) if not df_actual.empty else df_nuevos
+        df_combined.to_csv(RUTA_DATASET, index=False, encoding="utf-8")
+
+    return {"agregados": len(nuevos), "duplicados": duplicados, "errores": errores}

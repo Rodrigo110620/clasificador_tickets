@@ -1402,3 +1402,14 @@ El mouse inalámbrico pierde conexión cada pocos minutos,Hardware
 no puedo iniciar sesion en mi cuenta,Credenciales
 no puedo modificar la base de datos,Base de Datos
 no puedo acceder a la base de datos,Base de Datos
+mi mouse no esta siendo detectado por el computador,Hardware
+no puedo iniciar sesion en el sistema,Credenciales
+No puedo iniciar sesion en el sistema con mi usuario,Credenciales
+La base de datos PostgreSQL no acepta nuevas conexiones,Base de Datos
+El switch del piso 3 esta caido y no hay conectividad,Infraestructura
+Excel se congela al abrir archivos con mas de 50000 filas,Excel
+La impresora HP del piso 2 muestra error de atasco de papel,Impresoras
+No puedo conectarme a la VPN corporativa desde mi casa,VPN
+El teléfono IP del gerente no marca a extensiones internas,Telefonía
+Windows 11 no instala actualizaciones por error 0x800f0922,Sistema Operativo
+La aplicación se cierra inesperadamente al guardar registros,Bug de Software
