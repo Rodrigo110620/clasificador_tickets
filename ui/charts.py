@@ -1,8 +1,11 @@
+# ui/charts.py (versión corregida)
+
 import html
 
 import streamlit as st
 
 from config.constants import UMBRAL_VISUAL_PROB, icono_categoria
+from services.dataset import contar_por_categoria   # <-- NUEVO
 
 
 def _estilo_celda_matriz(valor: int, fila_total: int) -> str:
@@ -39,23 +42,16 @@ def _ancho_barra(prob: float) -> float:
 
 
 def grafico_probabilidades_html(prob_dict: dict, categoria_destacada: str):
-    """
-    Muestra las categorías del modelo filtrando las que están
-    por debajo de UMBRAL_VISUAL_PROB (5%) para no confundir al usuario.
-    La categoría top siempre se muestra aunque esté por debajo del umbral.
-    """
+    """(sin cambios)"""
     ordenado = sorted(prob_dict.items(), key=lambda x: x[1], reverse=True)
     if not ordenado:
         return
-
-    # FIX: filtrar probabilidades residuales — solo mostrar >= 5% o la top-1
     top_cat = ordenado[0][0]
     visible = [
         (cat, prob) for cat, prob in ordenado
         if prob >= UMBRAL_VISUAL_PROB or cat == top_cat
     ]
     ocultas = len(ordenado) - len(visible)
-
     filas = []
     for cat, prob in visible:
         pct_txt = _formatear_pct(prob)
@@ -70,9 +66,7 @@ def grafico_probabilidades_html(prob_dict: dict, categoria_destacada: str):
             f'  <div class="prob-pct">{pct_txt}</div>'
             f"</div>"
         )
-
     hint_ocultas = f" · {ocultas} categorías omitidas (&lt;5%)" if ocultas > 0 else ""
-
     st.markdown(
         f"""
         <div class="prob-panel">
@@ -94,38 +88,44 @@ def render_matriz_confusion_html(
     etiquetas: list,
     nombre_modelo: str,
 ):
-    fila_totales = [sum(fila) for fila in matriz]
+    # Obtener totales reales de cada categoría en el dataset completo
+    conteo_real = contar_por_categoria()  # dict {categoria: total_en_csv}
+
+    fila_totales = [sum(fila) for fila in matriz]   # totales en TEST
     total = sum(fila_totales)
     correctos = sum(matriz[i][i] for i in range(len(etiquetas)))
     accuracy_global = correctos / total if total else 0.0
 
-    encabezado = "".join(
-        f"<th>{html.escape(lbl)}</th>" for lbl in etiquetas
-    )
+    encabezado = "".join(f"<th>{html.escape(lbl)}</th>" for lbl in etiquetas)
     cuerpo = []
     recall_rows = []
+
     for i, real in enumerate(etiquetas):
-        fila_total = fila_totales[i]
+        fila_total_test = fila_totales[i]
+        total_real_csv = conteo_real.get(real, 0)   # <-- total real en CSV
+
+        # Celdas de la matriz
         celdas = ""
         for j, pred in enumerate(etiquetas):
             valor = matriz[i][j]
-            pct = valor / fila_total if fila_total else 0.0
+            pct = valor / fila_total_test if fila_total_test else 0.0
             pct_txt = _formatear_pct(pct)
-            title = (
-                f"Real: {real} → Pred: {pred} — {valor} ({pct_txt} de esta clase)"
-            )
+            title = f"Real: {real} → Pred: {pred} — {valor} ({pct_txt} de esta clase)"
             celdas += (
-                f"<td style='{_estilo_celda_matriz(valor, fila_total)}' title='{html.escape(title)}'>"
+                f"<td style='{_estilo_celda_matriz(valor, fila_total_test)}' title='{html.escape(title)}'>"
                 f"{valor}<br><span class='cell-pct'>{html.escape(pct_txt)}</span></td>"
             )
-        cuerpo.append(
-            f"<tr><th class='cm-real'>{html.escape(real)}</th>{celdas}</tr>"
-        )
-        recall = matriz[i][i] / fila_total if fila_total else 0.0
+        cuerpo.append(f"<tr><th class='cm-real'>{html.escape(real)}</th>{celdas}</tr>")
+
+        # Fila de recall (ahora con tres columnas)
+        recall = matriz[i][i] / fila_total_test if fila_total_test else 0.0
         recall_rows.append(
-            f"<tr><td>{html.escape(real)}</td>"
+            f"<tr>"
+            f"<td>{html.escape(real)}</td>"
             f"<td>{_formatear_pct(recall)}</td>"
-            f"<td>{fila_total}</td></tr>"
+            f"<td>{fila_total_test}</td>"
+            f"<td><strong>{total_real_csv}</strong></td>"   # <-- Nueva columna
+            f"</tr>"
         )
 
     st.markdown(
@@ -159,13 +159,23 @@ def render_matriz_confusion_html(
                     <div class="matriz-summary-label">Recall por categoría</div>
                     <table class="matriz-recall-table">
                         <thead>
-                            <tr><th>Categoría</th><th>Recall</th><th>Total real</th></tr>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Recall</th>
+                                <th>Total en test</th>
+                                <th>Total en CSV</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {"".join(recall_rows)}
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="matriz-nota" style="margin-top: 1rem; font-size: 0.8rem; color: #475569; background: #f8fafc; padding: 0.5rem; border-radius: 8px;">
+                ℹ️ Las métricas se calculan sobre el <strong>20% de los tickets</strong> (conjunto de prueba).<br>
+                Solo se incluyen categorías con al menos <strong>20 ejemplos</strong> en el dataset completo. 
+                La columna <strong>Total en CSV</strong> muestra el número real de tickets por categoría en todo el archivo.
             </div>
         </div>
         """,
