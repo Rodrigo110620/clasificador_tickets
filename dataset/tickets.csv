@@ -1413,3 +1413,223 @@ No puedo conectarme a la VPN corporativa desde mi casa,VPN
 El teléfono IP del gerente no marca a extensiones internas,Telefonía
 Windows 11 no instala actualizaciones por error 0x800f0922,Sistema Operativo
 La aplicación se cierra inesperadamente al guardar registros,Bug de Software
+El router WiFi se reinicia solo cada 2 horas después de actualizar el firmware,Infraestructura
+El switch del piso 3 no asigna VLAN correctamente tras un apagón,Infraestructura
+"La conexión a internet se cae cada 15 minutos, solo en el área de ventas",Infraestructura
+El servidor DNS no resuelve nombres internos desde el cambio de configuración,Infraestructura
+El firewall bloquea el tráfico de la VPN aunque la regla está activa,Infraestructura
+El rack del datacenter tiene temperatura alta por fallo de un ventilador,Infraestructura
+El servidor de correo dejó de recibir emails externos sin previo aviso,Infraestructura
+El balanceador de carga no distribuye tráfico al segundo nodo,Infraestructura
+"El NAS corporativo no permite escribir archivos, solo lectura",Infraestructura
+El proxy autenticado pide contraseña cada 5 minutos,Infraestructura
+El túnel IPsec entre sucursales se cae después de 30 minutos,Infraestructura
+El AP de la sala de juntas no emite señal 5GHz,Infraestructura
+El servidor DHCP se quedó sin direcciones IP en la VLAN de invitados,Infraestructura
+El enlace MPLS con la sede norte tiene latencia de 300ms,Infraestructura
+El certificado SSL del servidor web expiró y nadie lo renovó,Infraestructura
+El clúster de máquinas virtuales perdió un nodo por fallo de red,Infraestructura
+El monitor de red no muestra los datos de los switches nuevos,Infraestructura
+El backup nocturno falla porque el destino tiene poco espacio,Infraestructura
+El servicio de impresión en red se detiene cada madrugada,Infraestructura
+La conexión a la base de datos desde la aplicación web da timeout,Infraestructura
+La tablet Samsung no responde al tacto tras instalar una actualización de firmware,Hardware
+El monitor parpadea en colores extraños cuando conecto el HDMI,Hardware
+El teclado numérico del laptop dejó de funcionar después de derramar café,Hardware
+El ventilador del PC hace ruido metálico y el equipo se apaga solo,Hardware
+"El mouse Bluetooth se desconecta cada 10 minutos, incluso con batería nueva",Hardware
+"La webcam integrada muestra imagen verde, solo funciona con drivers antiguos",Hardware
+El disco duro externo USB 3.0 no es detectado en puertos azules,Hardware
+La batería del notebook se hinchó y deformó la carcasa,Hardware
+El lector de huella dactilar no reconoce ninguna huella tras actualizar Windows,Hardware
+El puerto USB-C no entrega video a un monitor externo,Hardware
+La impresora láser imprime manchas negras en toda la página,Hardware
+El escáner de la multifuncional se atasca al alimentar varias hojas,Hardware
+La fuente de poder del desktop huele a quemado y no arranca,Hardware
+El dock station no carga el laptop y tampoco detecta monitores,Hardware
+El micrófono del headset no se escucha en reuniones de Teams,Hardware
+La tarjeta gráfica produce artefactos en la pantalla al jugar,Hardware
+El SSD NVMe no aparece en la BIOS después de un reinicio forzado,Hardware
+"El lector de tarjetas SD no monta la memoria, aparece como no formateada",Hardware
+El botón de encendido de la tablet está hundido y no responde,Hardware
+El cable DisplayPort se desconecta solo al mover el mouse,Hardware
+"No puedo cambiar mi contraseña de dominio, el sistema dice que no cumple política",Credenciales
+Mi usuario de ERP aparece como inactivo aunque trabajo todos los días,Credenciales
+El doble factor no me envía el código SMS al celular,Credenciales
+"Olvidé mi PIN de acceso a la banca corporativa, necesito resetearlo",Credenciales
+La cuenta de correo está bloqueada por intentos fallidos desde otro país,Credenciales
+El token RSA muestra error 'PIN incorrecto' aunque lo acabo de cambiar,Credenciales
+No recibo el enlace para restablecer contraseña del portal de RRHH,Credenciales
+Mi sesión expira cada 5 minutos en el sistema de compras,Credenciales
+"El administrador me desactivó por error, necesito reactivación urgente",Credenciales
+La autenticación por huella en la app móvil dejó de funcionar,Credenciales
+El SSO redirige a una página de error después del login,Credenciales
+Mi usuario no tiene permisos para ver el módulo de ventas a pesar de ser vendedor,Credenciales
+El certificado digital de firma electrónica venció y no puedo facturar,Credenciales
+La política de contraseñas no me permite usar mi clave habitual,Credenciales
+"Al intentar acceder a la VPN, dice 'usuario no autorizado' pero estoy en AD",Credenciales
+El doble factor por app Google Authenticator no genera códigos válidos,Credenciales
+Necesito crear una cuenta de servicio para la aplicación de backups,Credenciales
+El cambio de contraseña no se replica en el sistema de tickets,Credenciales
+Mi cuenta de Active Directory está lockeada por múltiples intentos,Credenciales
+El portal de autoservicio no reconoce mis datos para recuperar contraseña,Credenciales
+La consulta SQL que genera el reporte de ventas tarda 5 minutos,Base de Datos
+El índice de la tabla clientes está corrupto y no podemos insertar registros,Base de Datos
+La réplica de MongoDB se detuvo por error de tamaño de op log,Base de Datos
+El procedimiento almacenado sp_cierre_mensual falla con error de deadlock,Base de Datos
+La base de datos Oracle se queda sin espacio en tablespace,Base de Datos
+El backup de PostgreSQL falla porque el archivo de configuración tiene errores,Base de Datos
+La conexión pool de MySQL se agota y deja aplicaciones sin respuesta,Base de Datos
+Hay registros duplicados en la tabla de transacciones por una mala inserción,Base de Datos
+El job de limpieza de logs no se ejecuta desde hace una semana,Base de Datos
+La migración de datos a la nueva base de datos perdió 2000 registros,Base de Datos
+El servidor de base de datos se cae cuando se ejecuta la consulta de fin de mes,Base de Datos
+La vista materializada no refresca automáticamente a pesar del scheduler,Base de Datos
+El trigger de auditoría no está registrando los cambios en tabla empleados,Base de Datos
+La base de datos SQL Server reporta error de archivo de datos corrupto,Base de Datos
+El comando VACUUM de PostgreSQL no libera espacio en disco,Base de Datos
+La replicación maestro-esclavo de MySQL está atrasada 2 horas,Base de Datos
+El cliente no puede conectar a MongoDB porque la autenticación falla,Base de Datos
+"El backup diferencial de Oracle no se puede restaurar, da error de checksum",Base de Datos
+La tabla particionada no admite nuevas particiones por límite de tamaño,Base de Datos
+El procedimiento ETL se detiene por error de conversión de fechas,Base de Datos
+La macro que consolida los reportes de Excel se ejecuta muy lento,Excel
+"Al abrir un archivo Excel con 100k filas, el programa se congela",Excel
+Las fórmulas BUSCARV devuelven #N/A aunque el dato existe,Excel
+El gráfico dinámico no actualiza los datos al cambiar el origen,Excel
+Excel se cierra inesperadamente al guardar un libro con muchas imágenes,Excel
+La función SI.ERROR no funciona correctamente en una hoja compartida,Excel
+No puedo desproteger una hoja porque olvidé la contraseña,Excel
+El formato condicional se pierde al copiar celdas a otra hoja,Excel
+El complemento Power Query no carga al abrir Excel,Excel
+Los vínculos externos a otro libro se rompen al mover la carpeta,Excel
+La tabla dinámica muestra (en blanco) en lugar del valor real,Excel
+El orden de las columnas en un CSV importado se cambia automáticamente,Excel
+La función SUMAR.SI.CONJUNTO devuelve 0 aunque hay valores positivos,Excel
+"El botón de macro no ejecuta el código asignado, dice que la macro está deshabilitada",Excel
+El archivo XLSX se corrompió y no se puede reparar con la herramienta de MS,Excel
+"Al filtrar una tabla, Excel muestra filas ocultas que deberían estar ocultas",Excel
+El autoguardado deja de funcionar cuando el archivo está en red,Excel
+La impresión de un rango específico imprime toda la hoja,Excel
+Los estilos de celda personalizados desaparecen al reiniciar Excel,Excel
+El cálculo manual no recalcula aunque presiono F9,Excel
+El teléfono IP no registra en la central Avaya tras un corte de luz,Telefonía
+"La extensión 305 no puede recibir llamadas externas, solo internas",Telefonía
+"El buzón de voz no se activa después de 4 tonos, sino después de 10",Telefonía
+Las llamadas VoIP tienen eco y retardo de 2 segundos,Telefonía
+El fax virtual no envía los documentos al correo configurado,Telefonía
+"La centralita muestra error de licencia expirada, no permite nuevas extensiones",Telefonía
+El menú IVR no reconoce el dígito 3 para el departamento de ventas,Telefonía
+La grabación de llamadas falla porque el disco del servidor está lleno,Telefonía
+El softphone del escritorio no se conecta al servidor SIP,Telefonía
+Las conferencias tripartitas se caen al minuto de iniciarse,Telefonía
+La guía telefónica interna no se sincroniza con el AD,Telefonía
+El teléfono DECT inalámbrico se desconecta al alejarse 10 metros,Telefonía
+El troncal SIP reporta saturación y no permite más de 5 llamadas simultáneas,Telefonía
+La calidad de voz en la sede norte es robótica y entrecortada,Telefonía
+No puedo transferir una llamada a otra extensión usando el botón transfer,Telefonía
+El contestador automático saluda en inglés y debería ser español,Telefonía
+Las llamadas entrantes muestran número desconocido aunque está registrado,Telefonía
+El gateway de telefonía no responde a ping y todas las líneas están caídas,Telefonía
+La extensión del gerente no puede marcar a celulares por restricción,Telefonía
+El reporte de llamadas perdidas no genera datos de los últimos 3 días,Telefonía
+"No puedo conectarme a la VPN de casa, error 800 después de instalar antivirus",VPN
+La VPN se conecta pero no puedo acceder a las carpetas compartidas,VPN
+"El cliente AnyConnect pide certificado cada vez, aunque ya está instalado",VPN
+"La conexión VPN se cae cada 30 minutos exactos, solo en teletrabajo",VPN
+No logro autenticar con mi usuario de dominio en el portal VPN,VPN
+"El split tunnel no funciona: todo el tráfico pasa por la VPN, incluso YouTube",VPN
+"Después de cambiar la contraseña de AD, la VPN sigue pidiendo la antigua",VPN
+El perfil VPN de Windows 10 no se importa correctamente desde el archivo .pbk,VPN
+La conexión SSL VPN da error de protocolo no soportado en Mac,VPN
+El doble factor por SMS no llega al intentar conectar la VPN,VPN
+"La velocidad de la VPN es muy baja (menos de 1 Mbps), insufrible para Teams",VPN
+El gateway VPN no permite más de 10 sesiones simultáneas,VPN
+No puedo usar la impresora de la oficina mientras estoy por VPN,VPN
+El cliente VPN de terceros bloquea el acceso a la intranet,VPN
+La política de acceso VPN deniega a los usuarios del departamento legal,VPN
+El túnel VPN no enruta el tráfico a la subred de desarrollo,VPN
+La VPN se desconecta al cambiar de red WiFi a cable ethernet,VPN
+El certificado raíz del VPN expiró y nadie lo renovó,VPN
+La autenticación por token RSA falla con error 'clock skew' grande,VPN
+"El cliente FortiClient no guarda la contraseña, la pide cada vez",VPN
+La impresora HP imprime con líneas blancas horizontales en todas las páginas,Impresoras
+El escáner de red no guarda los archivos en la carpeta designada,Impresoras
+La impresora látex de gran formato muestra error de tinta baja,Impresoras
+El plotter corta los planos porque el rollo de papel está mal cargado,Impresoras
+"La multifuncional no escanea a correo, da error de conexión SMTP",Impresoras
+El spooler de impresión se detiene cada vez que imprimimos un PDF,Impresoras
+"La impresora fiscal no emite comprobantes válidos, error de fecha y hora",Impresoras
+La cola de impresión se llena de trabajos fantasma que no se cancelan,Impresoras
+El driver de la impresora no es compatible con Windows 11,Impresoras
+"El tóner compatible no es reconocido, la impresora dice 'cartucho no original'",Impresoras
+La impresora WiFi se desconecta cada hora y hay que reiniciarla,Impresoras
+El servicio de impresión remota desde sucursal no funciona por firewall,Impresoras
+La impresora de etiquetas no imprime el código de barras completo,Impresoras
+El panel táctil de la impresora no responde al toque,Impresoras
+La impresora de matriz de puntos imprime con caracteres raros,Impresoras
+El contador de páginas de la copiadora no se resetea después de cambiar tóner,Impresoras
+"La impresión a doble cara sale invertida, la segunda hoja al revés",Impresoras
+El escáner dúplex solo escanea una cara del documento,Impresoras
+La impresora compartida en Windows da error 0x0000011b,Impresoras
+El firmware de la impresora se corrompió y no termina de arrancar,Impresoras
+Windows 10 no arranca después de la actualización KB5021234,Sistema Operativo
+El sistema operativo muestra pantalla negra con cursor después del login,Sistema Operativo
+El perfil de usuario temporal se carga cada vez que inicio sesión,Sistema Operativo
+"El dominio no aplica las GPO de escritorio, los iconos no aparecen",Sistema Operativo
+El equipo se reinicia solo al entrar en suspensión,Sistema Operativo
+"El disco C: se llena sin motivo aparente, hay archivos temporales enormes",Sistema Operativo
+El controlador de red deja de funcionar al salir de suspensión,Sistema Operativo
+"El menú de inicio no responde a clics, solo funciona con teclado",Sistema Operativo
+El sistema operativo reporta error de memoria al abrir varias aplicaciones,Sistema Operativo
+"La política de contraseñas no permite cambiar la clave, dice 'no cumple requisitos'",Sistema Operativo
+El explorador de archivos se congela al entrar en carpetas con muchos archivos,Sistema Operativo
+El servicio de Windows Update consume 100% de CPU durante horas,Sistema Operativo
+"El equipo no puede unirse al dominio, error 'el servidor RPC no está disponible'",Sistema Operativo
+"El sistema no reconoce la segunda pantalla, aunque el driver está instalado",Sistema Operativo
+El antivirus Windows Defender se desactiva solo sin notificación,Sistema Operativo
+El registro de eventos se llena de advertencias de kernel power,Sistema Operativo
+"El dual boot con Linux no muestra el menú grub, arranca directo a Windows",Sistema Operativo
+La cuenta de administrador local no funciona a pesar de haberla habilitado,Sistema Operativo
+El servicio de impresión se detiene y no reinicia automáticamente,Sistema Operativo
+El sistema operativo reporta fecha y hora incorrectas cada reinicio,Sistema Operativo
+El switch no asigna IP por DHCP a los nuevos laptops en el área de marketing,Redes IP
+El firewall bloquea el puerto 8080 que usa la aplicación interna de RRHH,Redes IP
+La resolución DNS falla para el servidor de archivos desde la VLAN de invitados,Redes IP
+El router principal no reenvía paquetes ICMP a la red de producción,Redes IP
+"El AP del piso 5 da señal débil, solo 2 de 4 barras",Redes IP
+La latencia de la red local sube a 200ms cuando se hace backup,Redes IP
+El túnel GRE hacia la nube se cae cada 8 horas exactas,Redes IP
+El switch de distribución tiene un bucle de spanning tree,Redes IP
+El servidor DHCP asignó una IP pública a un equipo interno,Redes IP
+El proxy autenticado no permite el tráfico HTTPS a sitios bancarios,Redes IP
+"La VLAN de voz no funciona, los teléfonos IP no obtienen IP de esa VLAN",Redes IP
+El balanceador de carga marca un nodo como down aunque responde a ping,Redes IP
+El trazado de ruta hacia internet se detiene en el firewall sin motivo,Redes IP
+El registro PTR no está configurado para el servidor de correo,Redes IP
+El switch de core reporta paquetes descartados por error de CRC,Redes IP
+"La red 2.4GHz está saturada, necesitamos migrar equipos a 5GHz",Redes IP
+El ACL del router bloquea SNMP del monitor Nagios,Redes IP
+"El NAT no funciona para el servidor web interno, no accesible desde fuera",Redes IP
+"El AP de invitados no aísla clientes, pueden verse entre ellos",Redes IP
+La conexión al servicio externo por puerto 443 cae por inspección SSL,Redes IP
+La interfaz de ventas no guarda los pedidos al hacer clic en el botón,Bug de Software
+El sistema de compras no envía correos de aprobación cuando se aprueba una orden,Bug de Software
+La aplicación móvil se cierra al intentar ver el historial de facturas,Bug de Software
+El reporte de inventario muestra cantidades negativas sin motivo,Bug de Software
+El formulario de registro de usuario no valida que el email sea único,Bug de Software
+El dashboard de ventas tarda 10 segundos en cargar los datos,Bug de Software
+El botón de exportar a PDF descarga un archivo vacío,Bug de Software
+El cálculo de impuestos en el carrito de compras es incorrecto con descuentos,Bug de Software
+La búsqueda de productos no encuentra resultados usando tildes,Bug de Software
+El sistema de tickets no asigna automáticamente el técnico según la categoría,Bug de Software
+La aplicación web no respeta el filtro de fechas al generar el reporte,Bug de Software
+El proceso de pago falla con error 500 al seleccionar tarjeta de crédito,Bug de Software
+La notificación push de la app no llega al dispositivo móvil,Bug de Software
+El usuario puede ver datos de otro usuario al cambiar el ID en la URL,Bug de Software
+El gráfico de ventas muestra el mes pasado en lugar del actual,Bug de Software
+El sistema de autenticación redirige a una página en blanco después del login,Bug de Software
+"El campo de RUT permite letras, debería solo números",Bug de Software
+El reporte de nómina duplica registros de empleados con mismo nombre,Bug de Software
+La integración con el API de pagos devuelve timeout constantemente,Bug de Software
+"El modal de confirmación no aparece al eliminar un registro, se borra sin aviso",Bug de Software
